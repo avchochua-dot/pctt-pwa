@@ -15,8 +15,8 @@
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png" />
 
-<!-- VGTB PWA V3.3 · mobile app refinement 2026-10-17 -->
-<title>VGTB Thủy văn · Vu Gia – Thu Bồn</title>
+<!-- VGTB PWA V3.4 · refined mobile app 2026-10-17 -->
+<title>VGTB · Giám sát thủy văn sông Vu Gia – Thu Bồn</title>
 <style>
 :root{
   color-scheme:dark;
@@ -775,12 +775,85 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 @media(min-width:761px){.windy-mobile-quick{display:none!important}}
 </style>
 
+
+<style id="vgtb-pwa-v34-refinement">
+/* VGTB PWA V3.4 – balance web visual identity with true mobile app ergonomics */
+@media(max-width:760px){
+  /* Header: logo left, full name readable, refresh beside LIVE on the right. */
+  .topbar{
+    height:60px!important;min-height:60px!important;padding:6px 8px!important;
+    display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;column-gap:7px!important;
+  }
+  .brand{min-width:0!important;display:grid!important;grid-template-columns:40px minmax(0,1fr)!important;gap:7px!important;align-items:center!important}
+  .brand-mark{width:40px!important;height:40px!important;min-width:40px!important;border-radius:11px!important;grid-column:1!important;grid-row:1!important}
+  .brand-copy{grid-column:2!important;grid-row:1!important;min-width:0!important;display:block!important}
+  .kicker{font-size:6.7px!important;letter-spacing:.10em!important;line-height:1.05!important;white-space:nowrap!important;color:#69cfff!important}
+  .brand h1{display:block!important;font-size:15.2px!important;line-height:1.05!important;margin:2px 0 2px!important;color:#f4fbff!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .subtitle{display:block!important;font-size:7.2px!important;line-height:1.08!important;max-width:none!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .top-actions{grid-column:2!important;grid-row:1!important;display:flex!important;gap:5px!important;align-items:center!important;justify-content:flex-end!important}
+  .app-refresh-btn{order:1!important;width:34px!important;height:34px!important;min-width:34px!important;margin:0!important}
+  .top-actions .mode-pill{order:2!important;height:32px!important;max-width:82px!important;padding:0 9px!important}
+
+  /* Summary cards: preserve calm navy background but give each KPI its own visual identity. */
+  .overview .summary{position:relative!important;overflow:hidden!important}
+  .overview .summary:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--summary-accent,#5bdcff);opacity:.95}
+  .overview .summary:nth-child(1){--summary-accent:#64d7ff}.overview .summary:nth-child(1) .summary-val,.overview .summary:nth-child(1) .summary-icon{color:#7bdfff!important}
+  .overview .summary:nth-child(2){--summary-accent:#54ead2}.overview .summary:nth-child(2) .summary-val,.overview .summary:nth-child(2) .summary-icon{color:#62efd5!important}
+  .overview .summary:nth-child(3){--summary-accent:#9eaaff}.overview .summary:nth-child(3) .summary-val,.overview .summary:nth-child(3) .summary-icon{color:#abb8ff!important}
+  .overview .summary:nth-child(4){--summary-accent:#57e5b8}.overview .summary:nth-child(4) .summary-val,.overview .summary:nth-child(4) .summary-icon{color:#69e9c0!important}
+  .overview .summary:nth-child(4).has-alert,.overview .summary:nth-child(4)[data-alert="1"]{--summary-accent:#ffc66f}
+
+  /* Data tab wording is public-friendly, buttons stay compact. */
+  .mobile-segment button{font-size:9px!important;line-height:1.2!important;padding:7px 4px!important}
+
+  /* Charts: remove the large dead area inherited from desktop chart containers. */
+  #view-charts .v9-chart-wrap{min-height:0!important;height:205px!important;overflow:hidden!important}
+  #view-charts .v9-chart-wrap svg{height:205px!important;min-height:205px!important;max-height:205px!important;width:100%!important;display:block!important}
+  #view-charts #downChart{height:215px!important;min-height:215px!important}
+  #view-charts #downChart svg{height:215px!important;min-height:215px!important;max-height:215px!important}
+  #view-charts .v9-stats{margin-top:6px!important;gap:5px!important}.v9-stat{padding:8px!important}.v9-stat b{font-size:17px!important}
+  #view-charts .v9-chart-caption{margin-top:5px!important}
+
+  /* Basin: restore information as compact live mini-cards instead of hiding it. */
+  #view-basin .basin-map-viewport.basin-mobile-mini .b94-card-fo{display:block!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .b94-card-leaders{display:block!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .b94-cardless{display:none!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node{display:flex!important;padding:7px 8px 6px!important;gap:2px!important;border-radius:10px!important;border-left-width:5px!important;box-shadow:0 7px 18px rgba(0,10,20,.48)!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-tag,
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-time{display:none!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-title{font-size:25px!important;line-height:1!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-reading{gap:8px!important;margin-top:2px!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-reading>small{font-size:18px!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-reading>b{font-size:38px!important;line-height:1!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-reading>em{font-size:18px!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-flow{grid-template-columns:repeat(3,1fr)!important;gap:4px!important;padding:4px 0 0!important;border-bottom:0!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-flow span{font-size:16px!important;line-height:1.05!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-flow b{font-size:22px!important;line-height:1!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-forecast{font-size:17px!important;gap:5px!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-node-forecast b{font-size:23px!important}
+  #view-basin .basin-map-viewport.basin-mobile-mini .basin-map-badge{display:none!important}
+  #view-basin .basin-touch-tip{display:none!important}
+  #view-basin .basin-actions #basinMotionBtn{font-size:8px!important;min-height:29px!important;padding:5px 8px!important}
+  #view-basin .basin-map-key{padding-top:7px!important}
+
+  /* Windy remains as in V3.3, just slightly denser. */
+  .windy-quick,.windy-place{min-height:30px!important;padding:5px 9px!important}
+}
+@media(max-width:390px){
+  .topbar{height:58px!important;min-height:58px!important}
+  .brand{grid-template-columns:38px minmax(0,1fr)!important}.brand-mark{width:38px!important;height:38px!important;min-width:38px!important}
+  .kicker{font-size:6.2px!important}.brand h1{font-size:14px!important}.subtitle{font-size:6.8px!important}
+  .app-refresh-btn{width:32px!important;height:32px!important;min-width:32px!important}.top-actions .mode-pill{height:30px!important;max-width:74px!important;padding:0 7px!important}
+}
+</style>
+
 </head>
 <body>
 <div class="screen">
   <div class="v9-shell-header" id="siteTop">
     <header class="topbar">
-      <div class="brand"><div class="brand-mark brand-logo-wrap" aria-label="Biểu tượng VGTB Thủy văn"><svg class="brand-symbol" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="vgtbWave" x1="0" x2="1"><stop stop-color="#32c9f4"/><stop offset="1" stop-color="#57edc3"/></linearGradient></defs><path d="M18 12l3.2 7.4L29 22.5l-7.8 3.1L18 33l-3.2-7.4L7 22.5l7.8-3.1z" fill="#ffd96a"/><path d="M11 39c7-4 13-4 20 0s13 4 22-1" fill="none" stroke="#bfefff" stroke-width="4" stroke-linecap="round"/><path d="M9 46c8-5 15-5 23 0s15 5 23-1v10c-8 6-15 6-23 1s-15-5-23 0z" fill="url(#vgtbWave)"/></svg></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div></div></div>
+      <div class="brand"><div class="brand-mark brand-logo-wrap" aria-label="Biểu tượng VGTB Thủy văn"><svg class="brand-symbol" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="vgtbWave" x1="0" x2="1"><stop stop-color="#32c9f4"/><stop offset="1" stop-color="#57edc3"/></linearGradient></defs><path d="M18 12l3.2 7.4L29 22.5l-7.8 3.1L18 33l-3.2-7.4L7 22.5l7.8-3.1z" fill="#ffd96a"/><path d="M11 39c7-4 13-4 20 0s13 4 22-1" fill="none" stroke="#bfefff" stroke-width="4" stroke-linecap="round"/><path d="M9 46c8-5 15-5 23 0s15 5 23-1v10c-8 6-15 6-23 1s-15-5-23 0z" fill="url(#vgtbWave)"/></svg></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN SÔNG</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div></div></div>
       <div class="top-actions"><button class="btn app-refresh-btn" id="refreshLiveBtn" type="button" title="Lấy dữ liệu mới nhất" aria-label="Cập nhật số liệu">↻</button><span id="sourceBadge" class="mode-pill" title="Tình trạng dữ liệu">ĐANG KẾT NỐI...</span><button class="btn" id="connectionBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cấu hình</button><button class="btn" id="pwaInstallBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cài</button><button class="btn" id="fullscreenBtn" type="button" hidden aria-hidden="true" tabindex="-1">Toàn màn hình</button></div>
     </header>
     <nav class="site-nav" aria-label="Điều hướng website AVC">
@@ -827,8 +900,8 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
     <div id="mobileDataApp" class="mobile-data-app" aria-label="Số liệu mobile theo đối tượng">
       <div class="mobile-screen-title"><div><b>Số liệu quan trắc</b><small>Chọn một hồ hoặc trạm để xem</small></div></div>
       <div class="mobile-segment" role="tablist" aria-label="Nhóm số liệu">
-        <button type="button" class="is-active" data-mobile-data-mode="reservoir">Hồ chứa</button>
-        <button type="button" data-mobile-data-mode="downstream">Hạ du</button>
+        <button type="button" class="is-active" data-mobile-data-mode="reservoir">04 hồ thủy điện</button>
+        <button type="button" data-mobile-data-mode="downstream">02 trạm thủy văn</button>
       </div>
       <div id="mobileReservoirDataPanel">
         <div class="mobile-object-switch mobile-object-switch--4" aria-label="Chọn hồ thủy điện">
@@ -2321,7 +2394,12 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
   function setBasinMobileMode(){
     const frame=document.getElementById('basinMapFrame');
     if(!frame)return;
-    if(mobile()) frame.classList.add('basin-hide-cards');
+    if(mobile()){
+      frame.classList.remove('basin-hide-cards');
+      frame.classList.add('basin-mobile-mini');
+    }else{
+      frame.classList.remove('basin-mobile-mini');
+    }
   }
   function syncQuickOverlay(name){
     document.querySelectorAll('[data-windy-quick-overlay]').forEach(b=>b.classList.toggle('is-active',b.dataset.windyQuickOverlay===name));
