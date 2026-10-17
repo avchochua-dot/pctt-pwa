@@ -1,8 +1,8 @@
-/* VGTB Thủy văn PWA Service Worker - V3.0.0 */
-const VERSION='3.0.0';
+/* VGTB Thủy văn PWA Service Worker - V3.2.0 */
+const VERSION='3.2.0';
 const SHELL_CACHE=`vgtb-shell-${VERSION}`;
 const DATA_CACHE=`vgtb-data-${VERSION}`;
-const APP_SHELL=['./','./index.html','./offline.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-192.png','./icons/icon-maskable-512.png','./icons/apple-touch-icon-180.png'];
+const APP_SHELL=['./','./index.html','./offline.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-192.png','./icons/icon-maskable-512.png','./icons/apple-touch-icon-180.png','./icons/vgtb-logo.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL_CACHE).then(c=>c.addAll(APP_SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>(k.startsWith('vgtb-')||k.startsWith('avc-pctt-'))&&!([SHELL_CACHE,DATA_CACHE].includes(k))).map(k=>caches.delete(k)));await self.clients.claim();})()));
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting();});

@@ -1,3 +1,10 @@
+## VGTB PWA V3.2
+
+- Logo VGTB moi o header va icon PWA.
+- Khung app dam ro hon.
+- Popup tram thuy van co mau rieng theo tung thong so.
+- Giu nguyen 6 tab, API va logic du bao +4h cua V3.1.
+
 # VGTB Thủy văn · PWA V3
 
 PWA mobile-first độc lập cho hệ thống Vu Gia – Thu Bồn.

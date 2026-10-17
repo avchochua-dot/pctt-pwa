@@ -15,6 +15,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png" />
 
+<!-- VGTB PWA V3.2 · header/forecast refinement 2026-10-17 -->
 <title>VGTB Thủy văn · Vu Gia – Thu Bồn</title>
 <style>
 :root{
@@ -517,6 +518,13 @@ button:disabled{cursor:not-allowed;opacity:.5}
 .basin-dlg::backdrop{background:#001828a8;backdrop-filter:blur(3px)}
 .basin-dlg-head{display:flex;gap:14px;justify-content:space-between;align-items:flex-start}.basin-dlg h3{font-size:21px;margin:0 0 6px}.basin-dlg-sub{font-size:11px;color:#a3c5d9;line-height:1.6}
 .basin-dlg-value{font-size:32px;font-weight:950;margin:15px 0 10px;color:#78f2e1}.basin-dlg-rows{display:grid;grid-template-columns:1fr 1fr;gap:8px}.basin-dlg-rows>div{background:#123a55;border:1px solid #335d75;border-radius:11px;padding:10px;font-size:10px;color:#b6d1e2}.basin-dlg-rows b{display:block;color:#ecfbff;font-size:15px;margin-top:5px}.basin-dlg-warning{color:#ffd49b;font-size:11px;margin-top:13px;line-height:1.6}
+/* V3.2 - Mau nhan dien rieng cho popup tram thuy van */
+.basin-dlg-rows .gauge-metric{--metric:#dcecf6;position:relative;overflow:hidden;border-left:3px solid var(--metric);background:linear-gradient(145deg,color-mix(in srgb,var(--metric) 8%,#123a55),#123a55);border-top-color:color-mix(in srgb,var(--metric) 34%,#335d75);border-right-color:color-mix(in srgb,var(--metric) 24%,#335d75);border-bottom-color:color-mix(in srgb,var(--metric) 24%,#335d75)}
+.basin-dlg-rows .gauge-metric b{color:var(--metric);text-shadow:0 0 14px color-mix(in srgb,var(--metric) 20%,transparent)}
+.gauge-metric.metric-delta3{--metric:#78adff}.gauge-metric.metric-forecast{--metric:#c6acff}.gauge-metric.metric-forecast-delta.is-up{--metric:#61e7be}.gauge-metric.metric-forecast-delta.is-down{--metric:#ffb45e}.gauge-metric.metric-forecast-delta.is-flat{--metric:#9fc4d7}.gauge-metric.metric-forecast-time{--metric:#9ed8ea}.gauge-metric.metric-alarm1{--metric:#ffd166}.gauge-metric.metric-alarm2{--metric:#ff9f43}.gauge-metric.metric-alarm3{--metric:#ff6f7d}.gauge-metric.metric-peak{--metric:#dc9cff}
+.basin-dlg-warning.severity-0{color:#72edc1}.basin-dlg-warning.severity-1{color:#ffd166}.basin-dlg-warning.severity-2{color:#ff9f43}.basin-dlg-warning.severity-3{color:#ff7884}
+@media(max-width:430px){.basin-dlg{padding:18px!important}.basin-dlg h3{font-size:20px}.basin-dlg-value{font-size:35px}.basin-dlg-rows{gap:8px}.basin-dlg-rows>div{padding:10px 11px}.basin-dlg-rows b{font-size:16px}}
+
 .basin-map-viewport:fullscreen{border:0;border-radius:0;overflow:auto;background:#071b2d}
 .basin-map-viewport:fullscreen .basin-map-stage{width:max(100%,1350px);height:auto;min-width:1160px}
 .basin-exit{display:none;position:absolute;z-index:20;right:15px;top:12px;background:#0a324c;border:1px solid #63a1bf;color:#dff5ff;border-radius:9px;padding:8px 11px;font-size:11px;font-weight:850}
@@ -633,7 +641,7 @@ button:disabled{cursor:not-allowed;opacity:.5}
   .v9-shell-header{position:sticky;top:0;z-index:400;background:#071929;padding-top:env(safe-area-inset-top,0px)}
   .topbar{min-height:60px;padding:7px 8px;border-radius:0 0 14px 14px;gap:7px;box-shadow:0 7px 22px #0005}
   .brand{gap:8px;min-width:0;flex:1}.brand-mark{width:36px;height:36px;border-radius:11px;font-size:16px}.kicker{font-size:8px;letter-spacing:.12em}.brand h1{font-size:17px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:1px 0}.subtitle{font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:54vw}
-  .top-actions{gap:4px;flex:none}.top-actions .btn{width:38px;height:38px;padding:0;font-size:0;border-radius:11px}.top-actions #refreshLiveBtn::before{content:'↻';font-size:20px}.top-actions #connectionBtn::before{content:'⚙';font-size:17px}.top-actions #pwaInstallBtn::before{content:'⊕';font-size:19px}.top-actions #fullscreenBtn{display:none}.top-actions .mode-pill{padding:6px 8px;font-size:9px;max-width:82px;overflow:hidden;text-overflow:ellipsis}
+  .top-actions{gap:4px;flex:none}.top-actions .btn{width:38px;height:38px;padding:0;font-size:0;border-radius:11px}.top-actions #refreshLiveBtn::before{content:none!important}.top-actions #connectionBtn::before{content:'⚙';font-size:17px}.top-actions #pwaInstallBtn::before{content:'⊕';font-size:19px}.top-actions #fullscreenBtn{display:none}.top-actions .mode-pill{padding:6px 8px;font-size:9px;max-width:82px;overflow:hidden;text-overflow:ellipsis}
   .site-nav{display:none!important}
   .overview{grid-template-columns:1fr 1fr;margin:8px 0;gap:7px}.summary{min-height:86px;padding:10px 9px;border-radius:14px;align-items:flex-start}.summary-icon{display:none}.summary-title{font-size:8.5px}.summary-val{font-size:19px!important;line-height:1.12}.summary-note{font-size:9px;line-height:1.35}
   .board{display:block;padding:7px;border-radius:16px}.reservoirs,.gauges{display:block}.res-card,.gauge-card{margin-bottom:9px}.res-card{min-height:0}.res-visual{min-height:0;aspect-ratio:900/415;max-height:none}.gauges .gauge-card{min-height:0}
@@ -666,11 +674,11 @@ button:disabled{cursor:not-allowed;opacity:.5}
 :root{--pwa-max:600px;--pwa-nav:70px;--pwa-header:#0b2033;--pwa-bg:#071827}
 html,body{height:100%;min-height:100%;margin:0;overflow:hidden;background:#050f1a!important}
 body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overscroll-behavior:none}
-.screen{width:100%!important;max-width:var(--pwa-max)!important;height:100dvh!important;min-height:100dvh!important;margin:0 auto!important;padding:0!important;display:flex!important;flex-direction:column!important;position:relative!important;overflow:hidden!important;background:var(--pwa-bg)!important;box-shadow:0 0 40px rgba(0,0,0,.34)}
+.screen{width:100%!important;max-width:var(--pwa-max)!important;height:100dvh!important;min-height:100dvh!important;margin:0 auto!important;padding:0!important;display:flex!important;flex-direction:column!important;position:relative!important;overflow:hidden!important;background:var(--pwa-bg)!important;box-sizing:border-box!important;border:2px solid #326b8c!important;border-radius:22px!important;box-shadow:0 0 0 1px rgba(100,205,255,.10),0 0 34px rgba(0,0,0,.48),inset 0 0 0 1px rgba(113,215,255,.05)!important}
 .v9-shell-header{position:relative!important;top:auto!important;z-index:100!important;flex:0 0 auto!important;background:var(--pwa-bg)!important;padding:env(safe-area-inset-top,0px) 0 0!important}
 .topbar{min-height:66px!important;padding:9px 12px!important;border-radius:0!important;border:0!important;border-bottom:1px solid #23465d!important;background:linear-gradient(180deg,#0c2940,#092238)!important;box-shadow:none!important;display:flex!important;align-items:center!important;gap:8px!important}
-.brand{display:flex!important;align-items:center!important;gap:9px!important;min-width:0!important;flex:1 1 auto!important}.brand-mark{width:34px!important;height:34px!important;min-width:34px!important;border-radius:10px!important}.kicker{font-size:8px!important;letter-spacing:.14em!important;color:#68c9ff!important}.brand h1{font-size:18px!important;line-height:1.05!important;margin:2px 0 3px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.subtitle{font-size:9px!important;line-height:1.25!important;max-width:310px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#8fb0c3!important}
-.top-actions{display:flex!important;align-items:center!important;gap:6px!important;flex:0 0 auto!important}.top-actions #connectionBtn,.top-actions #pwaInstallBtn,.top-actions #fullscreenBtn{display:none!important}.top-actions .mode-pill{max-width:108px!important;padding:6px 8px!important;border-radius:999px!important;font-size:9px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.app-refresh-btn{display:grid!important;place-items:center!important;width:38px!important;height:38px!important;min-width:38px!important;padding:0!important;border-radius:11px!important;font-size:21px!important;color:#84d9ff!important;background:#123d5b!important;border:1px solid #2f6688!important}
+.brand{display:flex!important;align-items:center!important;gap:10px!important;min-width:0!important;flex:1 1 auto!important}.brand-copy{min-width:0!important;flex:1 1 auto!important}.brand-mark{width:48px!important;height:48px!important;min-width:48px!important;border-radius:13px!important;overflow:hidden!important;padding:0!important;background:#0a2a40!important;border:1.5px solid #4c91b6!important;box-shadow:0 0 0 1px rgba(112,221,255,.08),0 4px 14px rgba(0,0,0,.28)!important}.brand-logo-wrap img{display:block;width:100%;height:100%;object-fit:cover;border-radius:12px}.kicker{font-size:8px!important;letter-spacing:.14em!important;color:#68c9ff!important}.brand h1{font-size:18px!important;line-height:1.05!important;margin:2px 0 3px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.subtitle{font-size:9px!important;line-height:1.25!important;max-width:285px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#8fb0c3!important}
+.top-actions{display:flex!important;align-items:center!important;gap:7px!important;flex:0 0 auto!important}.top-actions #connectionBtn,.top-actions #pwaInstallBtn,.top-actions #fullscreenBtn{display:none!important}.top-actions .mode-pill{max-width:76px!important;padding:7px 9px!important;border-radius:10px!important;font-size:9px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}.app-refresh-btn{display:grid!important;place-items:center!important;width:38px!important;height:38px!important;min-width:38px!important;padding:0!important;border-radius:10px!important;font-size:21px!important;line-height:1!important;color:#65c8ff!important;background:#102f49!important;border:1px solid #2e607f!important}.app-refresh-btn:disabled{opacity:.55!important}.brand-mark{font-weight:950!important;color:#63d9ff!important}.subtitle #headerDataTime{color:#66dfff!important;font-weight:800!important}
 .site-nav,#connectionPanel{display:none!important}
 .site-view{display:none;flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;margin:0!important;padding:10px 10px calc(var(--pwa-nav) + env(safe-area-inset-bottom,0px) + 14px)!important;background:var(--pwa-bg)!important;-webkit-overflow-scrolling:touch;scrollbar-width:none}.site-view::-webkit-scrollbar{display:none}.site-view:not([hidden]){display:block!important}
 #view-overview{padding-top:9px!important}.overview{grid-template-columns:1fr 1fr!important;gap:8px!important;margin:0 0 9px!important}.summary{min-height:94px!important;padding:11px 10px!important;border-radius:15px!important}.summary-icon{display:none!important}.summary-title{font-size:9px!important}.summary-val{font-size:21px!important;line-height:1.08!important}.summary-note{font-size:9px!important;line-height:1.35!important}
@@ -683,8 +691,8 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 .mobile-nav-item{appearance:none!important;-webkit-appearance:none!important;border:0!important;background:transparent!important;color:#6f8798!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;min-width:0!important;padding:4px 1px!important;border-radius:10px!important;font-size:9px!important;font-weight:800!important;line-height:1.05!important;pointer-events:auto!important;touch-action:manipulation!important;cursor:pointer!important}.mobile-nav-item svg{width:22px!important;height:22px!important;fill:currentColor!important;pointer-events:none}.mobile-nav-item span{pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}.mobile-nav-item.is-active{color:#58b8ff!important;background:linear-gradient(180deg,rgba(45,123,228,.19),rgba(45,123,228,.035))!important}.mobile-nav-item.is-active svg{filter:drop-shadow(0 0 6px rgba(80,180,255,.45))!important}
 .pwa-update-toast,.pwa-offline-ribbon{bottom:calc(var(--pwa-nav) + env(safe-area-inset-bottom,0px) + 8px)!important;max-width:calc(var(--pwa-max) - 20px)!important}
 .viewer-panel{bottom:calc(var(--pwa-nav) + env(safe-area-inset-bottom,0px))!important;z-index:9000!important}
-@media(max-width:390px){.brand-mark{display:none!important}.brand h1{font-size:17px!important}.subtitle{max-width:210px!important}.top-actions .mode-pill{max-width:88px!important}.mobile-nav-item{font-size:8px!important}.mobile-nav-item svg{width:20px!important;height:20px!important}}
-@media(min-width:601px){body{padding:0!important}.screen{border-left:1px solid #173448;border-right:1px solid #173448}}
+@media(max-width:390px){.brand-mark{display:block!important;width:43px!important;height:43px!important;min-width:43px!important;border-radius:12px!important}.brand-logo-wrap img{border-radius:11px}.brand{gap:8px!important}.brand h1{font-size:16px!important}.kicker{font-size:7.2px!important}.subtitle{max-width:165px!important;font-size:8px!important}.top-actions{gap:5px!important}.top-actions .mode-pill{max-width:70px!important;padding:6px 7px!important}.app-refresh-btn{width:35px!important;height:35px!important;min-width:35px!important}.mobile-nav-item{font-size:8px!important}.mobile-nav-item svg{width:20px!important;height:20px!important}}
+@media(min-width:601px){body{padding:2px!important}.screen{border:2px solid #326b8c!important;border-radius:22px!important}}
 </style>
 
 </head>
@@ -692,8 +700,8 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 <div class="screen">
   <div class="v9-shell-header" id="siteTop">
     <header class="topbar">
-      <div class="brand"><div class="brand-mark">✦</div><div><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle">4 hồ · 2 trạm thủy văn · Nguồn: <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a> (hạ du qua Supabase)</div></div></div>
-      <div class="top-actions"><span id="sourceBadge" class="mode-pill" title="Tình trạng dữ liệu">ĐANG KẾT NỐI...</span><button class="btn app-refresh-btn" id="refreshLiveBtn" type="button" title="Lấy dữ liệu mới nhất" aria-label="Cập nhật số liệu">↻</button><button class="btn" id="connectionBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cấu hình</button><button class="btn" id="pwaInstallBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cài</button><button class="btn" id="fullscreenBtn" type="button" hidden aria-hidden="true" tabindex="-1">Toàn màn hình</button></div>
+      <div class="brand"><div class="brand-mark brand-logo-wrap"><img src="./icons/vgtb-logo.png" alt="VGTB Thủy văn"></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div></div></div>
+      <div class="top-actions"><button class="btn app-refresh-btn" id="refreshLiveBtn" type="button" title="Lấy dữ liệu mới nhất" aria-label="Cập nhật số liệu">↻</button><span id="sourceBadge" class="mode-pill" title="Tình trạng dữ liệu">ĐANG KẾT NỐI...</span><button class="btn" id="connectionBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cấu hình</button><button class="btn" id="pwaInstallBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cài</button><button class="btn" id="fullscreenBtn" type="button" hidden aria-hidden="true" tabindex="-1">Toàn màn hình</button></div>
     </header>
     <nav class="site-nav" aria-label="Điều hướng website AVC">
       <div class="site-tablist" role="tablist" aria-label="Các chức năng của website">
@@ -737,7 +745,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
   <section class="site-view data-view" id="view-data" role="tabpanel" aria-labelledby="tabData" hidden>
     <button id="exitDataFullscreen" type="button" class="btn">✕ Thoát toàn màn hình</button>
     <div id="mobileDataApp" class="mobile-data-app" aria-label="Số liệu mobile theo đối tượng">
-      <div class="mobile-screen-title"><div><b>Số liệu quan trắc</b><small>Chọn một hồ hoặc trạm để xem</small></div><button type="button" class="mobile-refresh" id="mobileDataRefresh" aria-label="Cập nhật">↻</button></div>
+      <div class="mobile-screen-title"><div><b>Số liệu quan trắc</b><small>Chọn một hồ hoặc trạm để xem</small></div></div>
       <div class="mobile-segment" role="tablist" aria-label="Nhóm số liệu">
         <button type="button" class="is-active" data-mobile-data-mode="reservoir">Hồ chứa</button>
         <button type="button" data-mobile-data-mode="downstream">Hạ du</button>
@@ -773,6 +781,8 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
         <div class="mobile-kpi-grid mobile-kpi-grid--2">
           <div class="mobile-kpi-card metric-wl"><span>Mực nước hiện tại</span><b id="mobileGaugeNow">—</b><small>m</small></div>
           <div class="mobile-kpi-card metric-fc"><span>Dự báo +4 giờ</span><b id="mobileGaugeFc">—</b><small>m</small></div>
+          <div class="mobile-kpi-card metric-fc"><span>Δ dự báo</span><b id="mobileGaugeFcDelta">—</b><small>m</small></div>
+          <div class="mobile-kpi-card metric-fc"><span>Mốc dự báo</span><b id="mobileGaugeFcAt" style="font-size:15px;letter-spacing:-.01em">—</b></div>
         </div>
         <div class="mobile-duration" aria-label="Khoảng thời gian hạ du">
           <button type="button" class="is-active" data-mobile-down-hours="24">24h</button>
@@ -1507,10 +1517,22 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    byId('basinGaugeTitle').textContent=g.displayName;
    byId('basinGaugeSubtitle').textContent='Nguồn: PCTT Đà Nẵng → Supabase · '+(g.updatedAt?formatObsTime(g.updatedAt):'chưa có thời gian');
    byId('basinGaugeLevel').textContent=nfmt(v)+' m';
-   const list=[['Biến thiên 3 giờ',g.reading.delta3h==null?'—':(g.reading.delta3h>=0?'+':'')+nfmt(g.reading.delta3h)+' m'],['Dự báo +4 giờ',nfmt(f)+' m'],['Báo động I',nfmt(g.alarm_level_1)+' m'],['Báo động II',nfmt(g.alarm_level_2)+' m'],['Báo động III',nfmt(g.alarm_level_3)+' m'],['Đỉnh lịch sử 2025',nfmt(g.peak_2025_m)+' m']];
-   byId('basinGaugeRows').innerHTML=list.map(([k,val])=>'<div>'+escapeHtml(k)+'<b>'+escapeHtml(val)+'</b></div>').join('');
-   const target=g.reading.forecast4hAt?' Mốc dự báo '+formatObsTime(g.reading.forecast4hAt)+'.':'';
-   byId('basinGaugeStatus').textContent='Trạng thái: '+w.label+'. '+(g.source==='live'?'Số liệu được đánh dấu mới theo kiểm tra thời gian.':'Cần kiểm tra thời gian và nguồn quan trắc.')+target+' Dự báo mô hình chỉ có giá trị tham khảo.';
+   const fd=f!=null&&v!=null?+(f-v).toFixed(2):null;
+   const deltaClass=fd==null?'is-flat':fd>0?'is-up':fd<0?'is-down':'is-flat';
+   const list=[
+     {label:'Biến thiên 3 giờ',value:g.reading.delta3h==null?'—':(g.reading.delta3h>=0?'+':'')+nfmt(g.reading.delta3h)+' m',cls:'metric-delta3'},
+     {label:'Dự báo +4 giờ',value:f==null?'—':nfmt(f)+' m',cls:'metric-forecast'},
+     {label:'Δ dự báo',value:fd==null?'—':(fd>0?'+':'')+nfmt(fd)+' m',cls:'metric-forecast-delta '+deltaClass},
+     {label:'Mốc dự báo',value:g.reading.forecast4hAt?formatObsTime(g.reading.forecast4hAt):'—',cls:'metric-forecast-time'},
+     {label:'Báo động I',value:nfmt(g.alarm_level_1)+' m',cls:'metric-alarm1'},
+     {label:'Báo động II',value:nfmt(g.alarm_level_2)+' m',cls:'metric-alarm2'},
+     {label:'Báo động III',value:nfmt(g.alarm_level_3)+' m',cls:'metric-alarm3'},
+     {label:'Đỉnh lịch sử 2025',value:nfmt(g.peak_2025_m)+' m',cls:'metric-peak'}
+   ];
+   byId('basinGaugeRows').innerHTML=list.map(x=>'<div class="gauge-metric '+escapeHtml(x.cls)+'">'+escapeHtml(x.label)+'<b>'+escapeHtml(x.value)+'</b></div>').join('');
+   const statusEl=byId('basinGaugeStatus');
+   statusEl.className='basin-dlg-warning severity-'+Math.min(3,Math.max(0,Number(w.severity)||0));
+   statusEl.textContent='Trạng thái: '+w.label+'. '+(g.source==='live'?'Số liệu quan trắc đang trong ngưỡng thời gian LIVE.':'Số liệu quan trắc cần lưu ý thời điểm cập nhật.')+' Dự báo +4 giờ là giá trị mô hình tham khảo.';
    const dlg=byId('basinGaugeDialog');if(!dlg.open)dlg.showModal();
  }
 
@@ -1551,7 +1573,9 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    const stale=all.filter(o=>o.source==='stale').length;
    const badge=byId('sourceBadge');
    badge.className='mode-pill '+(stale?'warn':live?'live':'err');
-   badge.textContent=live?`LIVE ${live}/6${stale?' · '+stale+' dữ liệu cũ':''}`:stale?`${stale} NGUỒN DỮ LIỆU CŨ`:'CHƯA CÓ DỮ LIỆU LIVE';
+   badge.textContent=live?`LIVE ${live}/6`:stale?`CŨ ${stale}/6`:'CHƯA LIVE';
+   badge.title=live?`${live}/6 nguồn LIVE${stale?' · '+stale+' nguồn dữ liệu cũ':''}`:(stale?`${stale} nguồn dữ liệu cũ`:'Chưa có dữ liệu LIVE');
+   const ht=byId('headerDataTime');if(ht){const times=[...reservoirs,...gauges].map(x=>msVn(x.updatedAt)).filter(Number.isFinite);ht.textContent=times.length?'Dữ liệu '+formatObsTime(new Date(Math.max(...times)).toISOString()):'Đang đồng bộ số liệu…';}
    for(const b of document.querySelectorAll('[data-detail]'))b.addEventListener('click',()=>openDetail(b.dataset.detail));
  }
  function openDetail(code){window._detailCode=code;updateDetail(code);byId('detailDialog').showModal();}
@@ -1621,6 +1645,16 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
  const numVal=v=>v===null||v===undefined||v===''||!Number.isFinite(Number(v))?null:Number(v);
  const emptyR=()=>({level:null,inflow:null,turbine:null,spill:null,gate:null,delta24:null});
  const emptyG=()=>({level:null,delta3h:null,forecast4h:null,forecast4hAt:null});
+ const FORECAST_CACHE_KEY='vgtb_downstream_forecast_cache_v1';
+ const FORECAST_INPUT_MAX_AGE_MS=6*3600*1000;
+ function loadForecastCache(){
+   try{const x=JSON.parse(localStorage.getItem(FORECAST_CACHE_KEY)||'{}');
+     for(const g of gauges){const c=x?.[g.code];if(!c)continue;const v=numVal(c.value);if(v==null)continue;g.reading.forecast4h=v;g.reading.forecast4hAt=c.target||null;g.forecastError='Dự báo gần nhất đã lưu';}
+   }catch(_){ }
+ }
+ function saveForecastCache(){
+   try{const out={};for(const g of gauges){if(g.reading.forecast4h!=null)out[g.code]={value:g.reading.forecast4h,target:g.reading.forecast4hAt||null,savedAt:new Date().toISOString()};}localStorage.setItem(FORECAST_CACHE_KEY,JSON.stringify(out));}catch(_){ }
+ }
  function msVn(value){
    if(value===null||value===undefined||value==='')return null;
    if(typeof value==='number')return Number.isFinite(value)?value:null;
@@ -1788,7 +1822,9 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    const av=pickR('AVUONG'),dm=pickR('DAKMI4'),sb=pickR('SONGBUNG4'),st=pickR('SONGTRANH2');
    const hk=gauges.find(g=>g.code==='HOIKHACH'),an=gauges.find(g=>g.code==='AINGHIA');
    if(!av||!dm||!sb||!st||!hk||!an)return null;
-   if([av,dm,sb,st,hk,an].some(x=>x.source!=='live'))return null;
+   const now=Date.now();
+   const inputs=[av,dm,sb,st,hk,an];
+   if(inputs.some(x=>{const ms=msVn(x.updatedAt);return ms==null||ms>now+LIVE_CONFIG.maxFutureMs||now-ms>FORECAST_INPUT_MAX_AGE_MS;}))return null;
    const avQ=totalRelease(av),dmQ=totalRelease(dm),sbQ=totalRelease(sb),stQ=totalRelease(st);
    if([avQ,dmQ,sbQ,stQ].some(x=>x==null))return null;
    const basinRow=hydroHistory.find(x=>numVal(x.basin?.qVeVuGia)!=null&&numVal(x.basin?.qVeThuBon)!=null && Date.now()-x.ms<=LIVE_CONFIG.staleMs);
@@ -1829,15 +1865,18 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
  }
  async function loadGaugeForecasts(){
    downstreamForecastError=null;
-   for(const g of gauges){g.reading.forecast4h=null;g.reading.forecast4hAt=null;}
    const payload=buildForecastPayload();
-   if(!payload){downstreamForecastError='Thiếu số đo hoặc biến thiên 1h/3h thực tế để tính dự báo +4h; không dùng số 0 giả định';for(const g of gauges){g.forecastError=downstreamForecastError;}return;}
+   if(!payload){
+     downstreamForecastError='Đầu vào dự báo chưa đủ hoặc quá cũ; giữ dự báo hợp lệ gần nhất nếu có';
+     for(const g of gauges){if(g.reading.forecast4h==null)g.forecastError=downstreamForecastError;}
+     return;
+   }
    const url=new URL(backendUrl('/api/downstream-forecast'));
    url.searchParams.set('mode','forecast');
    for(const [k,v] of Object.entries(payload))url.searchParams.set(k,String(v));
    const result=await requestJson(url.toString());
    if(!result||result.ok!==true||!Array.isArray(result.stations))throw Error('API dự báo hạ du trả dữ liệu không hợp lệ');
-   applyForecastResponse(result);
+   applyForecastResponse(result);saveForecastCache();
  }
  async function loadGauges(){
    let errors=[];let rows=null;
@@ -1859,7 +1898,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    isSyncing=true;byId('refreshLiveBtn').disabled=true;setStatus('Đang lấy 4 hồ từ PCTT, 2 trạm hạ du và dự báo +4h…');
    try{
      await Promise.all([loadReservoirs(),loadGauges()]);
-     try{await loadGaugeForecasts();}catch(e){downstreamForecastError=e.message;for(const g of gauges){g.reading.forecast4h=null;g.reading.forecast4hAt=null;g.forecastError=e.message;}}
+     try{await loadGaugeForecasts();}catch(e){downstreamForecastError=e.message;for(const g of gauges){if(g.reading.forecast4h==null)g.forecastError=e.message;}}
      lastSyncTime=nowStamp();
      const all=[...reservoirs,...gauges],live=all.filter(x=>x.source==='live').length,stale=all.filter(x=>x.source==='stale').length,missing=6-live-stale;
      setStatus(`PCTT Đà Nẵng (hạ du qua Supabase): ${live}/6 nguồn mới · ${stale} số đo cũ · ${missing} nguồn thiếu / chưa kiểm chứng`,live<6?'warn':'');
@@ -2021,7 +2060,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
  });
  byId('sbLogout').addEventListener('click',()=>{token=null;refreshToken=null;tokenExp=0;byId('authState').textContent='Đã đăng xuất';refreshLive();});
 
- // ===== VGTB PWA V3 · MOBILE DATA =====
+ // ===== VGTB PWA V3.2 · MOBILE DATA =====
  let mobileDataMode='reservoir', mobileDataReservoir=1, mobileDataStation='HOIKHACH', mobileDataHours=24, mobileDownHours=24;
  try{
    const r=Number(localStorage.getItem('vgtb_mobile_reservoir'));if(V9_RESERVOIRS[r])mobileDataReservoir=r;
@@ -2061,11 +2100,13 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    for(const b of app.querySelectorAll('[data-mobile-station]'))b.classList.toggle('is-active',b.dataset.mobileStation===mobileDataStation);
    for(const b of app.querySelectorAll('[data-mobile-down-hours]'))b.classList.toggle('is-active',Number(b.dataset.mobileDownHours)===mobileDownHours);
    const g=gauges.find(x=>x.code===mobileDataStation)||gauges[0], dr=mobileDownRows(mobileDownHours), col=mobileDataStation==='HOIKHACH'?'hk':'an';
-   byId('mobileGaugeNow').textContent=mobileNumber(g?.reading?.level);byId('mobileGaugeFc').textContent=mobileNumber(g?.reading?.forecast4h);
+   const gNow=g?.reading?.level,gFc=g?.reading?.forecast4h,gFd=gNow!=null&&gFc!=null?+(gFc-gNow).toFixed(2):null;
+   byId('mobileGaugeNow').textContent=mobileNumber(gNow);byId('mobileGaugeFc').textContent=mobileNumber(gFc);
+   byId('mobileGaugeFcDelta').textContent=gFd==null?'—':(gFd>0?'+':'')+nfmt(gFd);
+   byId('mobileGaugeFcAt').textContent=g?.reading?.forecast4hAt?formatObsTime(g.reading.forecast4hAt):'—';
    byId('mobileDownstreamTableBody').innerHTML=dr.length?dr.map((x,i)=>{const t=vnParts(x.ms),v=x[col],d=downDelta(dr,i,col);return `<tr><td>${t.hour}<br><small>${t.day.slice(0,5)}</small></td><td class="metric-wl">${mobileNumber(v)}</td><td style="color:${d==null?'#789fb6':d>0?'#60e4bd':d<0?'#ffc478':'#b9d4e3'}">${d==null?'—':(d>0?'+':'')+nfmt(d)}</td></tr>`;}).join(''):'<tr><td colspan="3">Chưa có số liệu</td></tr>';
    byId('mobileDownstreamDataMeta').textContent=`${g?.displayName||'Trạm thủy văn'} · ${dr.length}/${mobileDownHours} mốc giờ · Hạ du nguồn PCTT Đà Nẵng, đồng bộ qua Supabase`;
  }
- byId('mobileDataRefresh')?.addEventListener('click',refreshLive);
  for(const b of document.querySelectorAll('[data-mobile-data-mode]'))b.addEventListener('click',()=>{mobileDataMode=b.dataset.mobileDataMode;renderMobileData();});
  for(const b of document.querySelectorAll('[data-mobile-reservoir]'))b.addEventListener('click',()=>{mobileDataReservoir=Number(b.dataset.mobileReservoir);v91Reservoir=mobileDataReservoir;try{localStorage.setItem('vgtb_mobile_reservoir',String(mobileDataReservoir));localStorage.setItem('vgtb_selected_reservoir',String(mobileDataReservoir));}catch(_){}renderMobileData();if(activeTab==='charts')renderCharts();});
  for(const b of document.querySelectorAll('[data-mobile-hours]'))b.addEventListener('click',()=>{mobileDataHours=Number(b.dataset.mobileHours);try{localStorage.setItem('vgtb_mobile_hours',String(mobileDataHours));}catch(_){}renderMobileData();});
@@ -2077,7 +2118,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
  // Restore last mobile tab after the first render only when launched as installed app without explicit shortcut.
  try{const qs=new URL(location.href).searchParams;if(!qs.get('tab')){const last=localStorage.getItem('vgtb_active_tab');if(['overview','data','charts','basin','flood','weather'].includes(last))setTimeout(()=>activateTab(last),0);}}catch(_){}
 
- render();diagnostics();refreshLive();
+ loadForecastCache();render();diagnostics();refreshLive();
  setInterval(()=>{if(!document.hidden)refreshLive();},LIVE_CONFIG.refreshMs);
 
 })();
