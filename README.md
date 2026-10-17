@@ -1,30 +1,21 @@
-# AVC PCTT PWA
+# VGTB Thủy văn · PWA V2
 
-PWA giám sát thủy văn liên hồ Vu Gia – Thu Bồn, phát triển từ AVC HYDRO MONITOR V9.5.
+PWA công khai cho hệ thống Vu Gia – Thu Bồn, giữ nguyên dữ liệu LIVE/API của dashboard V9.5 và tối ưu trải nghiệm mobile.
 
-## 6 tab
+## 6 tab mobile
 1. Tổng quan
 2. Số liệu
 3. Biểu đồ
-4. Sơ đồ lưu vực
-5. Mốc lũ hạ du
-6. Thời tiết Windy
+4. Lưu vực
+5. Mốc lũ
+6. Windy
+
+## Khác biệt trên mobile
+- Thanh điều hướng 6 tab cố định dưới màn hình.
+- Tab Số liệu: chọn từng hồ hoặc từng trạm hạ du, không hiển thị bảng 4 hồ rộng.
+- Màu thống nhất: MNH cyan, Q về xanh dương, Q máy xanh ngọc, Q xả cam.
+- Tab Biểu đồ: một hồ tại một thời điểm; trạng thái bật/tắt các đường dùng chung giữa 4 hồ. Mặc định MNH + Q về.
+- Desktop vẫn giữ nguyên giao diện website V9.5.
 
 ## Deploy GitHub Pages
-1. Upload toàn bộ nội dung thư mục này vào nhánh `main` của repo `pctt-pwa`.
-2. Vào **Settings → Pages**.
-3. Source: **Deploy from a branch**.
-4. Branch: **main**, folder: **/(root)** → Save.
-5. Chờ GitHub Pages build xong. URL thử nghiệm sẽ có dạng `https://avchochua-dot.github.io/pctt-pwa/`.
-
-## PWA
-- `manifest.webmanifest`: tên app, icon, màu, shortcuts.
-- `sw.js`: cache giao diện, network-first cho JSON/API, không cache Windy/Google Maps.
-- `offline.html`: trang dự phòng khi mất mạng.
-- `icons/`: icon tiêu chuẩn và maskable.
-
-## Cập nhật phiên bản
-Khi sửa PWA quan trọng, đổi `VERSION` ở đầu `sw.js`, ví dụ `1.0.0` → `1.0.1`. Người dùng sẽ thấy thông báo **Có phiên bản PWA mới**.
-
-## Lưu ý dữ liệu
-PWA ưu tiên mạng cho dữ liệu quan trắc. Cache API chỉ dùng làm dự phòng. Giao diện hiện tại vẫn phải căn cứ timestamp để đánh dấu LIVE / dữ liệu cũ. Windy và Google Maps chỉ hoạt động khi có Internet.
+Upload toàn bộ nội dung thư mục này vào root repository `pctt-pwa`, sau đó Settings → Pages → Deploy from a branch → `main` → `/(root)`.

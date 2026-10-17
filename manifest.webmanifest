@@ -1,20 +1,19 @@
 {
   "id": "./",
-  "name": "AVC - Giám sát thủy văn Vu Gia – Thu Bồn",
-  "short_name": "AVC Thủy văn",
-  "description": "Giám sát 4 hồ thủy điện và 2 trạm thủy văn hạ du trên lưu vực Vu Gia – Thu Bồn.",
+  "name": "Giám sát thủy văn Vu Gia – Thu Bồn",
+  "short_name": "VGTB Thủy văn",
+  "description": "PWA công khai giám sát 4 hồ thủy điện và 2 trạm thủy văn hạ du trên hệ thống Vu Gia – Thu Bồn.",
   "lang": "vi-VN",
   "dir": "ltr",
   "start_url": "./?source=pwa",
   "scope": "./",
   "display": "standalone",
   "display_override": [
-    "window-controls-overlay",
     "standalone",
     "minimal-ui"
   ],
   "orientation": "any",
-  "background_color": "#061626",
+  "background_color": "#071929",
   "theme_color": "#071b2d",
   "categories": [
     "utilities",

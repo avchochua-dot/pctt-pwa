@@ -1,91 +1,14 @@
-/* AVC PCTT PWA Service Worker - V1.0.0 */
-const VERSION='1.0.0';
-const SHELL_CACHE=`avc-pctt-shell-${VERSION}`;
-const DATA_CACHE=`avc-pctt-data-${VERSION}`;
-const APP_SHELL=[
-  './','./index.html','./offline.html','./manifest.webmanifest',
-  './icons/icon-192.png','./icons/icon-512.png',
-  './icons/icon-maskable-192.png','./icons/icon-maskable-512.png',
-  './icons/apple-touch-icon-180.png'
-];
-
-self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(SHELL_CACHE).then(cache=>cache.addAll(APP_SHELL)));
-});
-
-self.addEventListener('activate',event=>{
-  event.waitUntil((async()=>{
-    const keys=await caches.keys();
-    await Promise.all(keys.filter(k=>k.startsWith('avc-pctt-')&&!([SHELL_CACHE,DATA_CACHE].includes(k))).map(k=>caches.delete(k)));
-    await self.clients.claim();
-  })());
-});
-
-self.addEventListener('message',event=>{
-  if(event.data?.type==='SKIP_WAITING') self.skipWaiting();
-});
-
-const isMapOrWeather=u=>/(windy\.com|google\.com|googleapis\.com|gstatic\.com|openstreetmap\.org)/i.test(u.hostname);
-const isLikelyDataRequest=u=>{
-  if(/supabase\.co$/i.test(u.hostname)) return !/\/auth\/v1\//i.test(u.pathname);
-  if(/pctt\.danang\.gov\.vn$/i.test(u.hostname)) return true;
-  if(/vercel\.app$/i.test(u.hostname)&&/\/api\//i.test(u.pathname)) return true;
-  if(/\/api\//i.test(u.pathname)) return true;
-  return false;
-};
-
-async function networkFirstData(request){
-  const cache=await caches.open(DATA_CACHE);
-  try{
-    const response=await fetch(request);
-    const ct=response.headers.get('content-type')||'';
-    if(response.ok && (ct.includes('application/json')||ct.includes('text/json')||ct.includes('application/geo+json'))){
-      cache.put(request,response.clone()).catch(()=>{});
-    }
-    return response;
-  }catch(err){
-    const cached=await cache.match(request);
-    if(cached)return cached;
-    throw err;
-  }
-}
-
-async function navigationNetworkFirst(request){
-  try{
-    const response=await fetch(request);
-    if(response.ok){
-      const cache=await caches.open(SHELL_CACHE);
-      cache.put('./index.html',response.clone()).catch(()=>{});
-    }
-    return response;
-  }catch(err){
-    return (await caches.match('./index.html')) || (await caches.match('./offline.html'));
-  }
-}
-
-async function staleWhileRevalidate(request){
-  const cache=await caches.open(SHELL_CACHE);
-  const cached=await cache.match(request);
-  const fresh=fetch(request).then(response=>{
-    if(response.ok&&response.type!=='opaque')cache.put(request,response.clone()).catch(()=>{});
-    return response;
-  }).catch(()=>null);
-  return cached || fresh || caches.match('./offline.html');
-}
-
-self.addEventListener('fetch',event=>{
-  const request=event.request;
-  if(request.method!=='GET')return;
-  const url=new URL(request.url);
-
-  if(request.mode==='navigate'){
-    event.respondWith(navigationNetworkFirst(request));return;
-  }
-  if(isMapOrWeather(url)) return; // Always online; do not create huge/opaque caches.
-  if(isLikelyDataRequest(url)){
-    event.respondWith(networkFirstData(request));return;
-  }
-  if(url.origin===self.location.origin){
-    event.respondWith(staleWhileRevalidate(request));
-  }
-});
+/* VGTB Thủy văn PWA Service Worker - V2.0.0 */
+const VERSION='2.0.0';
+const SHELL_CACHE=`vgtb-shell-${VERSION}`;
+const DATA_CACHE=`vgtb-data-${VERSION}`;
+const APP_SHELL=['./','./index.html','./offline.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-192.png','./icons/icon-maskable-512.png','./icons/apple-touch-icon-180.png'];
+self.addEventListener('install',event=>event.waitUntil(caches.open(SHELL_CACHE).then(c=>c.addAll(APP_SHELL)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{const keys=await caches.keys();await Promise.all(keys.filter(k=>(k.startsWith('vgtb-')||k.startsWith('avc-pctt-'))&&!([SHELL_CACHE,DATA_CACHE].includes(k))).map(k=>caches.delete(k)));await self.clients.claim();})()));
+self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting();});
+const onlineOnly=u=>/(windy\.com|google\.com|googleapis\.com|gstatic\.com|openstreetmap\.org)/i.test(u.hostname);
+const isData=u=>/supabase\.co$/i.test(u.hostname)&&!/\/auth\/v1\//i.test(u.pathname)||/pctt\.danang\.gov\.vn$/i.test(u.hostname)||/vercel\.app$/i.test(u.hostname)&&/\/api\//i.test(u.pathname)||/\/api\//i.test(u.pathname);
+async function networkFirstData(req){const c=await caches.open(DATA_CACHE);try{const r=await fetch(req);const ct=r.headers.get('content-type')||'';if(r.ok&&/json/i.test(ct))c.put(req,r.clone()).catch(()=>{});return r;}catch(e){const old=await c.match(req);if(old)return old;throw e;}}
+async function navFirst(req){try{const r=await fetch(req);if(r.ok){const c=await caches.open(SHELL_CACHE);c.put('./index.html',r.clone()).catch(()=>{});}return r;}catch(e){return await caches.match('./index.html')||await caches.match('./offline.html');}}
+async function shell(req){const c=await caches.open(SHELL_CACHE);const old=await c.match(req);const fresh=fetch(req).then(r=>{if(r.ok&&r.type!=='opaque')c.put(req,r.clone()).catch(()=>{});return r;}).catch(()=>null);return old||fresh||caches.match('./offline.html');}
+self.addEventListener('fetch',event=>{const req=event.request;if(req.method!=='GET')return;const u=new URL(req.url);if(req.mode==='navigate'){event.respondWith(navFirst(req));return;}if(onlineOnly(u))return;if(isData(u)){event.respondWith(networkFirstData(req));return;}if(u.origin===self.location.origin)event.respondWith(shell(req));});
