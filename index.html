@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png" />
 
-<!-- VGTB PWA V3.2 · header/forecast refinement 2026-10-17 -->
+<!-- VGTB PWA V3.3 · mobile app refinement 2026-10-17 -->
 <title>VGTB Thủy văn · Vu Gia – Thu Bồn</title>
 <style>
 :root{
@@ -695,12 +695,92 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 @media(min-width:601px){body{padding:2px!important}.screen{border:2px solid #326b8c!important;border-radius:22px!important}}
 </style>
 
+
+<style id="vgtb-pwa-v33-final">
+/* VGTB PWA V3.3 – mobile-first final refinement */
+.brand-symbol{width:100%;height:100%;display:block;padding:4px}
+.brand-logo-wrap{overflow:hidden;background:linear-gradient(145deg,#0d3552,#071f34)!important}
+.windy-mobile-quick{display:none}
+@media(max-width:760px){
+  :root{--mobile-nav-height:66px;--pwa-nav:66px}
+  html,body{height:100%;background:#061522!important}
+  body{padding:0!important;overflow:hidden!important}
+  .screen{height:100dvh!important;max-height:100dvh!important;display:flex!important;flex-direction:column!important;padding:0!important;border:2px solid #2c6b8e!important;border-radius:22px!important;overflow:hidden!important;box-shadow:inset 0 0 0 1px rgba(105,211,255,.12),0 0 22px rgba(39,128,177,.14)!important}
+  .v9-shell-header{position:relative!important;top:auto!important;flex:0 0 auto!important;padding:0!important;background:transparent!important;z-index:100!important}
+  .topbar{min-height:54px!important;height:54px!important;padding:5px 8px!important;border:0!important;border-bottom:1px solid #21445b!important;border-radius:0!important;background:linear-gradient(100deg,#0d2b43,#082239)!important;box-shadow:none!important;display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:6px!important}
+  .brand{display:flex!important;align-items:center!important;gap:7px!important;min-width:0!important;flex:1 1 auto!important}
+  .brand-mark{display:grid!important;place-items:center!important;width:39px!important;height:39px!important;min-width:39px!important;border-radius:11px!important;border:1px solid #3f83a9!important}
+  .brand-copy{min-width:0!important;line-height:1.02!important}
+  .kicker{font-size:6.8px!important;letter-spacing:.11em!important;line-height:1!important;margin-bottom:1px!important;white-space:nowrap!important}
+  .brand h1{font-size:15.5px!important;line-height:1.03!important;margin:1px 0 2px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .subtitle{font-size:7.6px!important;line-height:1.1!important;max-width:240px!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;color:#8fb4c9!important}
+  .subtitle #headerDataTime{font-weight:850!important;color:#69d9ff!important}
+  .top-actions{display:flex!important;align-items:center!important;gap:5px!important;flex:0 0 auto!important;flex-wrap:nowrap!important}
+  .app-refresh-btn{width:34px!important;height:34px!important;min-width:34px!important;border-radius:10px!important;padding:0!important;font-size:19px!important;line-height:1!important}
+  .top-actions .mode-pill{height:32px!important;display:inline-flex!important;align-items:center!important;max-width:76px!important;padding:0 8px!important;font-size:8px!important;border-radius:16px!important;overflow:hidden!important;text-overflow:ellipsis!important}
+  .top-actions #connectionBtn,.top-actions #pwaInstallBtn,.top-actions #fullscreenBtn{display:none!important}
+  .site-nav{display:none!important}
+  /* Let the content, not body, scroll; bottom navigation remains stable. */
+  .site-view:not([hidden]){display:block!important;flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overscroll-behavior-y:contain!important;padding:7px 8px calc(var(--mobile-nav-height) + env(safe-area-inset-bottom,0px) + 8px)!important;margin:0!important;scrollbar-width:none!important}
+  .site-view::-webkit-scrollbar{display:none}
+  #view-overview{padding-top:7px!important}
+  .overview{margin:0 0 7px!important;gap:6px!important}.summary{min-height:78px!important;padding:9px 8px!important}.summary-title{font-size:8px!important}.summary-val{font-size:18px!important}.summary-note{font-size:8.5px!important}
+  /* Bottom nav – slightly shorter and visually quieter. */
+  .mobile-bottom-nav{position:absolute!important;height:calc(var(--mobile-nav-height) + env(safe-area-inset-bottom,0px))!important;padding:3px 4px env(safe-area-inset-bottom,0px)!important;border-top:1px solid #1d3b50!important;box-shadow:0 -6px 18px rgba(0,0,0,.30)!important;background:rgba(3,14,25,.985)!important}
+  .mobile-nav-item{font-size:8px!important;gap:2px!important;padding:3px 1px!important;border-radius:9px!important}.mobile-nav-item svg{width:19px!important;height:19px!important}.mobile-nav-item.is-active{background:linear-gradient(180deg,rgba(35,102,190,.19),rgba(25,73,126,.05))!important;color:#5bc5ff!important}
+  /* PWA has no meaningful second fullscreen mode. Hide every fullscreen control. */
+  #basinFullscreenBtn,#basinExitFullscreen,#floodFullscreenBtn,#windyFullscreenBtn,#fullscreenBtn,[data-fullscreen]{display:none!important}
+  /* Reuse global refresh; hide duplicate refresh controls inside tabs. */
+  #chartRefresh,#floodReload,#windyReload,.mobile-refresh{display:none!important}
+  /* Data tab: slightly denser controls. */
+  .mobile-screen-title{margin:0 1px 6px!important}.mobile-screen-title b{font-size:18px!important}.mobile-segment,.mobile-duration{gap:4px!important;padding:3px!important}.mobile-segment button,.mobile-duration button,.mobile-object-switch button{padding:8px 3px!important;min-height:36px!important}.mobile-kpi-card{min-height:78px!important;padding:9px!important}.mobile-kpi-card b{font-size:23px!important}
+  /* Charts: fit the phone; no horizontal desktop canvas and no local refresh. */
+  #view-charts .v9-title-row:first-child{margin-bottom:5px!important}
+  #view-charts .v9-inline-tools{display:block!important;margin-top:5px!important}
+  #view-charts .v9-inline-tools>label{display:flex!important;align-items:center!important;gap:7px!important;font-size:10px!important}
+  #view-charts .v9-chart-wrap{min-height:255px!important;overflow:hidden!important;padding:0!important}
+  #view-charts .v9-chart-wrap svg{min-width:0!important;width:100%!important;max-width:100%!important;height:auto!important}
+  #view-charts .v91-reset{width:auto!important;min-width:104px!important;padding:7px 12px!important;margin:0 0 6px!important}
+  #view-charts .v91-control-group{gap:4px!important;margin-bottom:5px!important}.v91-choice{min-height:34px!important;padding:6px 4px!important}
+  /* BASIN: true mobile overview. Fit full SVG, remove large foreignObject cards. */
+  #view-basin{overflow-y:auto!important;overflow-x:hidden!important}
+  #view-basin .basin-top{padding:1px 2px 6px!important;margin:0!important;display:block!important}
+  #view-basin .basin-eyebrow{font-size:7.5px!important}.basin-top h2{font-size:17px!important;line-height:1.15!important;margin:2px 0 3px!important}.basin-top p{font-size:8.8px!important;line-height:1.35!important;margin:0 0 6px!important}
+  #view-basin .basin-actions{display:flex!important;gap:5px!important;margin:0!important}.basin-actions #basinCardsBtn{display:none!important}.basin-actions #basinMotionBtn{width:auto!important;min-height:31px!important;padding:6px 9px!important;font-size:8.5px!important;border-radius:9px!important}
+  #view-basin .basin-map-viewport{width:100%!important;min-height:0!important;height:auto!important;overflow:hidden!important;border-radius:13px!important;touch-action:manipulation!important}
+  #view-basin .basin-map-stage,#view-basin .basin-map-viewport:fullscreen .basin-map-stage{width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;aspect-ratio:1800/1000!important;transform:none!important}
+  #view-basin .basin-map-stage>svg{display:block!important;width:100%!important;height:auto!important;min-width:0!important}
+  #view-basin .b94-card-fo,#view-basin .b94-card-leaders{display:none!important}
+  #view-basin .b94-cardless{display:block!important}
+  #view-basin .b94-river-label{font-size:22px!important;stroke-width:7px!important}
+  #view-basin .b94-plant-label,#view-basin .b94-station-label{font-size:21px!important;stroke-width:6px!important}
+  #view-basin .b94-place-label{font-size:18px!important}.b94-small-label{font-size:15px!important}.b94-basin-title{font-size:29px!important}
+  #view-basin .basin-map-key,#view-basin .basin-info-line{font-size:8px!important;line-height:1.35!important}
+  /* Flood map: map is the main content; compact actions, no fullscreen. */
+  #view-flood .v9-title-row{display:block!important;margin-bottom:6px!important}#view-flood .v9-title-row h2{font-size:18px!important;margin-bottom:3px!important}#view-flood .v9-title-row p{font-size:9px!important;line-height:1.35!important}
+  #view-flood .v9-map-links{margin-top:5px!important}#view-flood .v9-map-links a{padding:6px 9px!important;font-size:9px!important}#view-flood .v9-side{display:none!important}
+  #view-flood .v9-embed-container,#view-flood .v9-embed-container iframe{height:calc(100dvh - 154px)!important;min-height:520px!important;border-radius:12px!important}
+  /* Windy: app-native quick controls above map. */
+  #view-weather .v9-title-row{display:block!important;margin-bottom:5px!important}#view-weather .v9-title-row h2{font-size:18px!important;margin-bottom:3px!important}#view-weather .v9-title-row p{font-size:9px!important;line-height:1.35!important}#view-weather .v9-map-links{display:none!important}#view-weather .v9-side{display:none!important}
+  .windy-mobile-quick{display:block!important;margin:4px 0 6px!important}
+  .windy-quick-scroll{display:flex!important;gap:5px!important;overflow-x:auto!important;scrollbar-width:none!important;padding-bottom:2px!important}.windy-quick-scroll::-webkit-scrollbar{display:none}
+  .windy-quick,.windy-place{border:1px solid #2d5c78;background:#0d314b;color:#a9c8d9;border-radius:10px;font-size:9px;font-weight:850;white-space:nowrap;min-height:32px;padding:6px 10px}
+  .windy-quick.is-active{background:#185f8c;color:#fff;border-color:#58c8ff;box-shadow:inset 0 0 0 1px rgba(106,216,255,.12)}
+  .windy-quick-place{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:4px}.windy-place.is-active{background:#135b51;color:#73f1cf;border-color:#3ccbb1}
+  #view-weather .v9-embed-container,#view-weather .v9-embed-container iframe{height:calc(100dvh - 222px)!important;min-height:500px!important;border-radius:12px!important}
+}
+@media(max-width:390px){
+  .topbar{height:52px!important;min-height:52px!important}.brand-mark{width:37px!important;height:37px!important;min-width:37px!important}.brand h1{font-size:14.5px!important}.subtitle{max-width:185px!important;font-size:7.2px!important}.app-refresh-btn{width:32px!important;height:32px!important;min-width:32px!important}.top-actions .mode-pill{height:30px!important;max-width:68px!important;padding:0 6px!important}
+}
+@media(min-width:761px){.windy-mobile-quick{display:none!important}}
+</style>
+
 </head>
 <body>
 <div class="screen">
   <div class="v9-shell-header" id="siteTop">
     <header class="topbar">
-      <div class="brand"><div class="brand-mark brand-logo-wrap"><img src="./icons/vgtb-logo.png" alt="VGTB Thủy văn"></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div></div></div>
+      <div class="brand"><div class="brand-mark brand-logo-wrap" aria-label="Biểu tượng VGTB Thủy văn"><svg class="brand-symbol" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="vgtbWave" x1="0" x2="1"><stop stop-color="#32c9f4"/><stop offset="1" stop-color="#57edc3"/></linearGradient></defs><path d="M18 12l3.2 7.4L29 22.5l-7.8 3.1L18 33l-3.2-7.4L7 22.5l7.8-3.1z" fill="#ffd96a"/><path d="M11 39c7-4 13-4 20 0s13 4 22-1" fill="none" stroke="#bfefff" stroke-width="4" stroke-linecap="round"/><path d="M9 46c8-5 15-5 23 0s15 5 23-1v10c-8 6-15 6-23 1s-15-5-23 0z" fill="url(#vgtbWave)"/></svg></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div></div></div>
       <div class="top-actions"><button class="btn app-refresh-btn" id="refreshLiveBtn" type="button" title="Lấy dữ liệu mới nhất" aria-label="Cập nhật số liệu">↻</button><span id="sourceBadge" class="mode-pill" title="Tình trạng dữ liệu">ĐANG KẾT NỐI...</span><button class="btn" id="connectionBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cấu hình</button><button class="btn" id="pwaInstallBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cài</button><button class="btn" id="fullscreenBtn" type="button" hidden aria-hidden="true" tabindex="-1">Toàn màn hình</button></div>
     </header>
     <nav class="site-nav" aria-label="Điều hướng website AVC">
@@ -927,6 +1007,16 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
   </section>
   <section class="site-view v9-workspace" id="view-weather" role="tabpanel" aria-labelledby="tabWeather" hidden>
     <div class="v9-title-row"><div><h2>Bản đồ thời tiết Windy</h2><p>Thời tiết khu vực Vu Gia – Thu Bồn và A Vương · nguồn Windy bên ngoài, không phải dữ liệu đo tại hồ</p></div><div class="v9-map-links"><a id="windyOpenMap" href="https://www.windy.com/?15.856,107.989,8" target="_blank" rel="noopener noreferrer">↗ Mở Windy</a><button id="windyFullscreenBtn" type="button" class="btn">⛶ Toàn màn hình bản đồ</button></div></div>
+    <div class="windy-mobile-quick" id="windyMobileQuick" aria-label="Chọn nhanh lớp thời tiết Windy">
+      <div class="windy-quick-scroll">
+        <button type="button" class="windy-quick is-active" data-windy-quick-overlay="rain">🌧 Mưa</button>
+        <button type="button" class="windy-quick" data-windy-quick-overlay="radar">☔ Radar</button>
+        <button type="button" class="windy-quick" data-windy-quick-overlay="wind">〰 Gió</button>
+        <button type="button" class="windy-quick" data-windy-quick-overlay="clouds">☁ Mây</button>
+        <button type="button" class="windy-quick" data-windy-quick-overlay="temp">🌡 Nhiệt</button>
+      </div>
+      <div class="windy-quick-place"><button type="button" class="windy-place" data-windy-place="basin">⌖ Lưu vực</button><button type="button" class="windy-place" data-windy-place="avuong">⌖ A Vương</button></div>
+    </div>
     <div class="v9-map-grid"><div class="v9-embed-container" id="windyEmbedContainer"><iframe id="windyFrame" title="Windy – Bản đồ mưa, radar và thời tiết khu vực Vu Gia Thu Bồn" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
       <aside class="v9-side"><div class="v9-side-block"><h3>Lớp thời tiết</h3><div class="v9-pill-group" id="windyOverlayButtons"><button type="button" class="v9-pill is-active" data-overlay="rain">🌧 Mưa</button><button type="button" class="v9-pill" data-overlay="radar">☔ Radar</button><button type="button" class="v9-pill" data-overlay="wind">〰 Gió</button><button type="button" class="v9-pill" data-overlay="clouds">☁ Mây</button><button type="button" class="v9-pill" data-overlay="temp">🌡 Nhiệt độ</button></div></div>
       <div class="v9-side-block"><h3>Mô hình dự báo</h3><select id="windyModel" aria-label="Mô hình dự báo Windy"><option value="ecmwf">ECMWF</option><option value="gfs">GFS</option><option value="icon">ICON</option></select><p>Một số lớp không hỗ trợ mọi mô hình trong khung nhúng. Windy có thể tự chuyển sang mô hình mặc định.</p></div>
@@ -2220,6 +2310,42 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
       if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(openTab,80),{once:true});else setTimeout(openTab,80);
     }
   }
+})();
+</script>
+
+
+<script id="vgtb-pwa-v33-behavior">
+(function(){
+  'use strict';
+  function mobile(){return window.matchMedia('(max-width:760px)').matches;}
+  function setBasinMobileMode(){
+    const frame=document.getElementById('basinMapFrame');
+    if(!frame)return;
+    if(mobile()) frame.classList.add('basin-hide-cards');
+  }
+  function syncQuickOverlay(name){
+    document.querySelectorAll('[data-windy-quick-overlay]').forEach(b=>b.classList.toggle('is-active',b.dataset.windyQuickOverlay===name));
+  }
+  document.querySelectorAll('[data-windy-quick-overlay]').forEach(btn=>btn.addEventListener('click',()=>{
+    const name=btn.dataset.windyQuickOverlay;
+    const original=document.querySelector('#windyOverlayButtons [data-overlay="'+name+'"]');
+    if(original){original.click();syncQuickOverlay(name);}
+  }));
+  document.querySelectorAll('[data-windy-place]').forEach(btn=>btn.addEventListener('click',()=>{
+    const which=btn.dataset.windyPlace;
+    const original=document.getElementById(which==='avuong'?'windyFocusAv':'windyFocusBasin');
+    if(original)original.click();
+    document.querySelectorAll('[data-windy-place]').forEach(b=>b.classList.toggle('is-active',b===btn));
+  }));
+  // Make the basin mobile-first every time the layout changes or app opens.
+  setBasinMobileMode();
+  window.addEventListener('resize',setBasinMobileMode,{passive:true});
+  window.addEventListener('orientationchange',setBasinMobileMode,{passive:true});
+  // Fullscreen is intentionally not part of the PWA interaction model.
+  ['basinFullscreenBtn','floodFullscreenBtn','windyFullscreenBtn','fullscreenBtn'].forEach(id=>{
+    const el=document.getElementById(id); if(el){el.setAttribute('aria-hidden','true');el.tabIndex=-1;}
+  });
+  syncQuickOverlay('rain');
 })();
 </script>
 
