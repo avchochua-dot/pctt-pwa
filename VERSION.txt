@@ -1,0 +1,3 @@
+VGTB PWA V3.0.0
+Build: 2026-10-17
+Architecture: mobile-first standalone PWA

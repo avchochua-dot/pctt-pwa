@@ -1,5 +1,5 @@
-/* VGTB Thủy văn PWA Service Worker - V2.0.0 */
-const VERSION='2.0.0';
+/* VGTB Thủy văn PWA Service Worker - V3.0.0 */
+const VERSION='3.0.0';
 const SHELL_CACHE=`vgtb-shell-${VERSION}`;
 const DATA_CACHE=`vgtb-data-${VERSION}`;
 const APP_SHELL=['./','./index.html','./offline.html','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-192.png','./icons/icon-maskable-512.png','./icons/apple-touch-icon-180.png'];

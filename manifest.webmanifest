@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Giám sát thủy văn Vu Gia – Thu Bồn",
   "short_name": "VGTB Thủy văn",
-  "description": "PWA công khai giám sát 4 hồ thủy điện và 2 trạm thủy văn hạ du trên hệ thống Vu Gia – Thu Bồn.",
+  "description": "PWA mobile-first độc lập theo dõi 4 hồ thủy điện và 2 trạm thủy văn hạ du hệ thống Vu Gia – Thu Bồn.",
   "lang": "vi-VN",
   "dir": "ltr",
   "start_url": "./?source=pwa",
@@ -12,7 +12,7 @@
     "standalone",
     "minimal-ui"
   ],
-  "orientation": "any",
+  "orientation": "portrait-primary",
   "background_color": "#071929",
   "theme_color": "#071b2d",
   "categories": [

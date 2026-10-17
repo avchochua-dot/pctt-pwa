@@ -1,8 +1,8 @@
-# VGTB Thủy văn · PWA V2
+# VGTB Thủy văn · PWA V3
 
-PWA công khai cho hệ thống Vu Gia – Thu Bồn, giữ nguyên dữ liệu LIVE/API của dashboard V9.5 và tối ưu trải nghiệm mobile.
+PWA mobile-first độc lập cho hệ thống Vu Gia – Thu Bồn.
 
-## 6 tab mobile
+## 6 màn hình
 1. Tổng quan
 2. Số liệu
 3. Biểu đồ
@@ -10,12 +10,10 @@ PWA công khai cho hệ thống Vu Gia – Thu Bồn, giữ nguyên dữ liệu 
 5. Mốc lũ
 6. Windy
 
-## Khác biệt trên mobile
-- Thanh điều hướng 6 tab cố định dưới màn hình.
-- Tab Số liệu: chọn từng hồ hoặc từng trạm hạ du, không hiển thị bảng 4 hồ rộng.
-- Màu thống nhất: MNH cyan, Q về xanh dương, Q máy xanh ngọc, Q xả cam.
-- Tab Biểu đồ: một hồ tại một thời điểm; trạng thái bật/tắt các đường dùng chung giữa 4 hồ. Mặc định MNH + Q về.
-- Desktop vẫn giữ nguyên giao diện website V9.5.
-
-## Deploy GitHub Pages
-Upload toàn bộ nội dung thư mục này vào root repository `pctt-pwa`, sau đó Settings → Pages → Deploy from a branch → `main` → `/(root)`.
+## Điểm chính V3
+- Kiến trúc app mobile-first theo PWA A Vương: app-container cố định chiều cao, vùng nội dung cuộn riêng, bottom navigation cố định.
+- Bottom navigation dùng `onclick` trực tiếp để ổn định trên iPhone/PWA standalone.
+- Không hiển thị Cấu hình / Cài ứng dụng / Toàn màn hình.
+- Số liệu chọn từng hồ hoặc từng trạm.
+- Biểu đồ chọn một hồ; trạng thái 4 đường dùng chung cho cả 4 hồ, mặc định MNH + Q về.
+- Service worker V3, cache shell và dữ liệu theo chiến lược network-first cho nguồn động.
