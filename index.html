@@ -848,12 +848,13 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 }
 </style>
 
+<style id="vgtb-visitor-counter-css">.vgtb-visitor-counter{display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:#a9d6ea;font-size:11px;font-weight:700;line-height:1.4}.vgtb-visitor-counter .vc-number{color:#64e6c7;font-variant-numeric:tabular-nums}.vgtb-visitor-counter .vc-dot{color:#49768e}.vgtb-visitor-counter[data-error="true"]{opacity:.7}@media(max-width:520px){.vgtb-visitor-counter{font-size:10px;gap:5px}}</style>
 </head>
 <body>
 <div class="screen">
   <div class="v9-shell-header" id="siteTop">
     <header class="topbar">
-      <div class="brand"><div class="brand-mark brand-logo-wrap" aria-label="Biểu tượng VGTB Thủy văn"><svg class="brand-symbol" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="vgtbWave" x1="0" x2="1"><stop stop-color="#32c9f4"/><stop offset="1" stop-color="#57edc3"/></linearGradient></defs><path d="M18 12l3.2 7.4L29 22.5l-7.8 3.1L18 33l-3.2-7.4L7 22.5l7.8-3.1z" fill="#ffd96a"/><path d="M11 39c7-4 13-4 20 0s13 4 22-1" fill="none" stroke="#bfefff" stroke-width="4" stroke-linecap="round"/><path d="M9 46c8-5 15-5 23 0s15 5 23-1v10c-8 6-15 6-23 1s-15-5-23 0z" fill="url(#vgtbWave)"/></svg></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN SÔNG</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div></div></div>
+      <div class="brand"><div class="brand-mark brand-logo-wrap" aria-label="Biểu tượng VGTB Thủy văn"><svg class="brand-symbol" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="vgtbWave" x1="0" x2="1"><stop stop-color="#32c9f4"/><stop offset="1" stop-color="#57edc3"/></linearGradient></defs><path d="M18 12l3.2 7.4L29 22.5l-7.8 3.1L18 33l-3.2-7.4L7 22.5l7.8-3.1z" fill="#ffd96a"/><path d="M11 39c7-4 13-4 20 0s13 4 22-1" fill="none" stroke="#bfefff" stroke-width="4" stroke-linecap="round"/><path d="M9 46c8-5 15-5 23 0s15 5 23-1v10c-8 6-15 6-23 1s-15-5-23 0z" fill="url(#vgtbWave)"/></svg></div><div class="brand-copy"><div class="kicker">VGTB · GIÁM SÁT THỦY VĂN SÔNG</div><h1>Vu Gia – Thu Bồn</h1><div class="subtitle"><span id="headerDataTime">Đang đồng bộ số liệu…</span> · <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#88d9ff;text-decoration:underline;text-underline-offset:2px">PCTT Đà Nẵng</a></div><span id="vgtbVisitCounter" class="vgtb-visitor-counter" title="Tổng lượt mở phiên Website và PWA VGTB"><span>◉ Lượt truy cập:</span><span class="vc-number" id="vgtbVisitTotal">…</span></span></div></div>
       <div class="top-actions"><button class="btn app-refresh-btn" id="refreshLiveBtn" type="button" title="Lấy dữ liệu mới nhất" aria-label="Cập nhật số liệu">↻</button><span id="sourceBadge" class="mode-pill" title="Tình trạng dữ liệu">ĐANG KẾT NỐI...</span><button class="btn" id="connectionBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cấu hình</button><button class="btn" id="pwaInstallBtn" type="button" hidden aria-hidden="true" tabindex="-1">Cài</button><button class="btn" id="fullscreenBtn" type="button" hidden aria-hidden="true" tabindex="-1">Toàn màn hình</button></div>
     </header>
     <nav class="site-nav" aria-label="Điều hướng website AVC">
@@ -2427,5 +2428,39 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 })();
 </script>
 
+<script id="vgtb-visitor-counter-js">
+(function(){
+'use strict';
+// Dung chung 1 bo dem VGTB cho website va PWA. Khong dem khi doi tab hay refresh.
+const BASE='https://ycthhachfxczwkburnfa.supabase.co';
+const KEY='sb_publishable_Q0KbTLPBE4owO72Mz-GN6A_khF9z_Ss';
+const SESSION_KEY='vgtb_visit_counted_v1';
+const fmt=n=>Number(n).toLocaleString('vi-VN');
+const target=document.getElementById('vgtbVisitTotal');
+if(!target)return;
+const headers={'apikey':KEY,'Content-Type':'application/json','Accept':'application/json'};
+async function readTotal(){
+ const res=await fetch(BASE+'/rest/v1/site_stats?id=eq.vgtb&select=total_visits',{headers:{apikey:KEY,Accept:'application/json'},cache:'no-store'});
+ if(!res.ok)throw new Error('site_stats HTTP '+res.status);
+ const rows=await res.json();return Number(rows?.[0]?.total_visits ?? 0);
+}
+async function countOnce(){
+ // Session storage la theo tab. Ghi session marker sau khi RPC thanh cong.
+ let counted=false;try{counted=sessionStorage.getItem(SESSION_KEY)==='1';}catch(_){}
+ if(!counted){
+  const res=await fetch(BASE+'/rest/v1/rpc/increment_vgtb_visit',{method:'POST',headers,body:'{}',cache:'no-store'});
+  if(!res.ok)throw new Error('increment_vgtb_visit HTTP '+res.status);
+  const total=await res.json();
+  try{sessionStorage.setItem(SESSION_KEY,'1');}catch(_){}
+  return Number(total);
+ }
+ return readTotal();
+}
+countOnce().then(n=>{target.textContent=Number.isFinite(n)?fmt(n):'—';}).catch(err=>{
+ console.warn('[VGTB visit counter]',err);target.textContent='—';
+ document.getElementById('vgtbVisitCounter')?.setAttribute('data-error','true');
+});
+})();
+</script>
 </body>
 </html>
