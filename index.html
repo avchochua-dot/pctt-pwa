@@ -852,31 +852,45 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 <style id="vgtb-visitor-counter-css">.vgtb-visitor-counter{display:flex;align-items:center;gap:7px;flex-wrap:wrap;color:#a9d6ea;font-size:11px;font-weight:700;line-height:1.4}.vgtb-visitor-counter .vc-number{color:#64e6c7;font-variant-numeric:tabular-nums}.vgtb-visitor-counter .vc-dot{color:#49768e}.vgtb-visitor-counter[data-error="true"]{opacity:.7}@media(max-width:520px){.vgtb-visitor-counter{font-size:10px;gap:5px}}</style>
 
 <style id="vgtb-basin-portrait-only-fix">
-/* Chỉ chỉnh tab Lưu vực. Các tab, header, dữ liệu và JS khác giữ nguyên. */
-#view-basin .basin-map-viewport{overflow:hidden!important;min-height:0!important;height:auto!important;border-radius:14px!important;background:#08283b!important}
-#view-basin .basin-map-stage{width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;aspect-ratio:760/1320!important;background:#08283b!important}
+/* V3.5.4 - Chỉ chỉnh tab Lưu vực. Không đụng các tab / API / popup khác. */
+#view-basin .basin-map-viewport{overflow:hidden!important;min-height:0!important;height:auto!important;border-radius:15px!important;background:#08283b!important}
+#view-basin .basin-map-stage{width:100%!important;min-width:0!important;max-width:100%!important;height:auto!important;aspect-ratio:760/1240!important;background:#08283b!important}
 #view-basin .basin-map-stage>svg{display:block!important;width:100%!important;height:100%!important;min-width:0!important;max-width:100%!important}
-#view-basin .b94-card-fo{display:block!important}
+#view-basin .b94-card-fo{display:block!important;overflow:visible!important}
 #view-basin .b94-cardless,#view-basin .b94-card-leaders{display:none!important}
-#view-basin .b94-card-fo .basin-node{height:100%!important;padding:7px 8px 6px!important;border-radius:10px!important;gap:3px!important;box-shadow:0 5px 14px #00172555!important}
-#view-basin .b94-card-fo .basin-node-title{font-size:12px!important}
-#view-basin .b94-card-fo .basin-node-tag{font-size:6.5px!important;padding:2px 3px!important}
-#view-basin .b94-card-fo .basin-node-reading b{font-size:21px!important}
-#view-basin .b94-card-fo .basin-node-reading small,#view-basin .b94-card-fo .basin-node-reading em{font-size:8px!important}
-#view-basin .b94-card-fo .basin-node-flow{padding:3px 18px 3px 0!important;gap:2px!important}
-#view-basin .b94-card-fo .basin-node-flow span{font-size:7px!important}.b94-card-fo .basin-node-flow b{font-size:10px!important}
-#view-basin .b94-card-fo .basin-node-flow em{font-size:6.5px!important;bottom:4px!important}
-#view-basin .b94-card-fo .basin-node-time{font-size:6.7px!important}
-#view-basin .b94-card-fo .basin-node-forecast{font-size:8px!important}#view-basin .b94-card-fo .basin-node-forecast b{font-size:11px!important}
-#view-basin .b94-river-label{font-size:15px!important;stroke-width:4px!important}
-#view-basin .b94-plant-label,#view-basin .b94-station-label{font-size:13px!important;stroke-width:4px!important}
-#view-basin .b94-place-label{font-size:12px!important}#view-basin .b94-small-label{font-size:9px!important}#view-basin .b94-basin-title{font-size:16px!important;letter-spacing:2px!important}
-#view-basin .b94-connector-label{font-size:11px!important;stroke-width:3px!important}.b94-key-title{font-size:10px!important}.b94-key-text{font-size:8px!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .b94-card-fo .basin-node{
+  display:flex!important;position:static!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
+  overflow:hidden!important;box-sizing:border-box!important;padding:7px 8px 6px!important;border-radius:10px!important;gap:2px!important;
+  border-left-width:4px!important;background:linear-gradient(145deg,#123d53,#08283a)!important;box-shadow:0 5px 14px rgba(0,12,22,.38)!important
+}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-header{min-width:0!important;gap:4px!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-title{font-size:11.5px!important;line-height:1.12!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-tag{font-size:6px!important;padding:2px 3px!important;line-height:1!important;border-radius:4px!important;flex:0 0 auto!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-reading{display:flex!important;align-items:baseline!important;gap:5px!important;margin:1px 0!important;min-width:0!important;white-space:nowrap!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-reading>small{font-size:7.5px!important;line-height:1!important;flex:0 0 auto!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-reading>b{font-size:20px!important;line-height:1!important;max-width:112px!important;overflow:hidden!important;text-overflow:clip!important;white-space:nowrap!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-reading>em{font-size:7.5px!important;line-height:1!important;flex:0 0 auto!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-flow{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:3px!important;padding:3px 0 0!important;margin:0!important;border-top:1px solid #5e849044!important;border-bottom:0!important;min-width:0!important;width:100%!important;overflow:hidden!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-flow span{display:flex!important;flex-direction:column!important;gap:1px!important;font-size:6.5px!important;line-height:1.05!important;min-width:0!important;overflow:hidden!important;white-space:nowrap!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-flow b{font-size:9.5px!important;line-height:1.05!important;max-width:100%!important;overflow:hidden!important;white-space:nowrap!important;text-overflow:clip!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-flow em{display:none!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-time{display:none!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-forecast{font-size:7px!important;line-height:1.15!important;gap:4px!important;white-space:nowrap!important;overflow:hidden!important;margin-top:2px!important}
+#view-basin .basin-map-viewport.basin-portrait-v354 .basin-node-forecast b{font-size:10.5px!important;line-height:1!important}
+#view-basin .b94-river-label{font-size:13px!important;stroke-width:3.5px!important}
+#view-basin .b94-plant-label,#view-basin .b94-station-label{font-size:11px!important;stroke-width:3.5px!important}
+#view-basin .b94-place-label{font-size:10px!important;stroke-width:3px!important}
+#view-basin .b94-small-label{font-size:8px!important;stroke-width:2.5px!important}
+#view-basin .b94-basin-title{font-size:14px!important;letter-spacing:1.5px!important}
+#view-basin .b94-connector-label{font-size:10px!important;stroke-width:3px!important}
+#view-basin .b94-key-title{font-size:9px!important}#view-basin .b94-key-text{font-size:7.5px!important}
 #view-basin .basin-touch-tip{display:none!important}
+#view-basin .b94-info-leaders path{vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 1px rgba(0,20,30,.45))}
 @media(max-width:760px){
  #view-basin .basin-top{padding:1px 2px 5px!important;margin:0!important}
+ #view-basin .basin-top p{font-size:8.5px!important;line-height:1.35!important}
  #view-basin .basin-map-viewport{width:100%!important}
- #view-basin .basin-map-stage{aspect-ratio:760/1320!important}
+ #view-basin .basin-map-stage{aspect-ratio:760/1240!important}
  #view-basin .basin-actions{display:flex!important}.basin-actions #basinCardsBtn,.basin-actions #basinFullscreenBtn{display:none!important}
 }
 </style>
@@ -1055,7 +1069,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    <div>
      <div class="basin-eyebrow">VGTB · HỆ THỐNG LIÊN HỒ</div>
      <h2>Sơ đồ lưu vực Vu Gia – Thu Bồn <span style="color:#62e7c3;font-size:11px;vertical-align:middle">● Số liệu quan trắc</span></h2>
-     <p>Sơ đồ nguyên lý dọc cho điện thoại: hai hệ sông chạy song song, chữ nằm ngang; thẻ số liệu được bố trí ngoài hành lang sông để không che sông, đập và điểm nối.</p>
+     <p>Sơ đồ nguyên lý dọc cho điện thoại. Hai hệ sông chạy song song; vị trí điểm nối được giữ theo quan hệ thủy hệ, thẻ số liệu nằm ngoài hành lang sông để không che sông và đập.</p>
    </div>
    <div class="basin-actions">
      <button class="basin-action" id="basinMotionBtn" type="button" aria-pressed="true">◉ Dòng chảy minh họa: Bật</button>
@@ -1063,139 +1077,144 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
      <button class="basin-action" id="basinFullscreenBtn" type="button" style="display:none">⛶ Toàn màn hình</button>
    </div>
  </div>
- <div class="basin-map-viewport" id="basinMapFrame" tabindex="0" aria-label="Sơ đồ lưu vực Vu Gia Thu Bồn dạng dọc">
+ <div class="basin-map-viewport basin-portrait-v354" id="basinMapFrame" tabindex="0" aria-label="Sơ đồ lưu vực Vu Gia Thu Bồn dạng dọc cân đối">
    <div class="basin-map-stage" id="basinMapStage">
-<svg id="basinNetworkSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1320" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="b94MapTitle b94MapDesc">
-<title id="b94MapTitle">Sơ đồ lưu vực Vu Gia – Thu Bồn dạng dọc tối ưu cho điện thoại</title>
-<desc id="b94MapDesc">Hai hệ sông Thu Bồn và Vu Gia chạy dọc song song. Các nhánh nhập vào theo sơ đồ nguyên lý; Hội Khách nằm trên Vu Gia; nhánh nối tách khỏi Vu Gia trước Ái Nghĩa và nhập Thu Bồn tại Giao Thủy. Thẻ số liệu đặt ngoài hành lang sông để không che sông và đập.</desc>
+<svg id="basinNetworkSVG" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1240" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="b94MapTitle b94MapDesc">
+<title id="b94MapTitle">Sơ đồ lưu vực Vu Gia – Thu Bồn dạng dọc cân đối cho điện thoại</title>
+<desc id="b94MapDesc">Lưu vực Thu Bồn chiếm khoảng một phần ba bên trái; lưu vực Vu Gia rộng hơn ở bên phải do có nhiều nhánh và nhà máy. Hội Khách nằm trên Vu Gia. Nhánh nối tách khỏi Vu Gia trước Ái Nghĩa và nhập Thu Bồn tại Giao Thủy.</desc>
 <defs>
  <radialGradient id="b94Bg" cx="50%" cy="8%" r="110%"><stop stop-color="#1c4760"/><stop offset=".58" stop-color="#0a2b43"/><stop offset="1" stop-color="#061d30"/></radialGradient>
- <linearGradient id="b94Vu" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#77885e" stop-opacity=".61"/><stop offset="1" stop-color="#204d4d" stop-opacity=".78"/></linearGradient>
- <linearGradient id="b94Thu" x1="0" y1="0" x2=".35" y2="1"><stop stop-color="#3f826c" stop-opacity=".74"/><stop offset="1" stop-color="#174a53" stop-opacity=".88"/></linearGradient>
- <linearGradient id="b94River" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a9f7ff"/><stop offset=".45" stop-color="#5fdaf5"/><stop offset="1" stop-color="#25b7ed"/></linearGradient>
+ <linearGradient id="b94Vu" x1="0" y1="0" x2=".25" y2="1"><stop stop-color="#788b60" stop-opacity=".62"/><stop offset="1" stop-color="#20514d" stop-opacity=".82"/></linearGradient>
+ <linearGradient id="b94Thu" x1="0" y1="0" x2=".35" y2="1"><stop stop-color="#438870" stop-opacity=".76"/><stop offset="1" stop-color="#174d55" stop-opacity=".9"/></linearGradient>
+ <linearGradient id="b94River" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#bafaff"/><stop offset=".42" stop-color="#64ddf7"/><stop offset="1" stop-color="#27b8ed"/></linearGradient>
  <linearGradient id="b94Concrete" x2="1" y2="1"><stop stop-color="#e4eff1"/><stop offset=".5" stop-color="#98b4bd"/><stop offset="1" stop-color="#557785"/></linearGradient>
- <pattern id="b94Topo" width="96" height="52" patternUnits="userSpaceOnUse"><path d="M-10 18Q22 1 56 16T108 16M-8 37Q24 18 61 33T112 32" fill="none" stroke="#c7e7d0" opacity=".052" stroke-width="1.4"/></pattern>
- <filter id="b94SoftGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <pattern id="b94Topo" width="90" height="48" patternUnits="userSpaceOnUse"><path d="M-10 17Q20 2 52 15T102 15M-8 34Q22 17 58 31T106 31" fill="none" stroke="#d0edd8" opacity=".05" stroke-width="1.3"/></pattern>
+ <filter id="b94SoftGlow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
  <marker id="b94Arrow" markerWidth="8" markerHeight="8" refX="5" refY="4" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L6 4 0 8" fill="none" stroke="#e8fdff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
  <symbol id="b94Dam" viewBox="0 0 44 40"><path d="M2 33Q9 26 19 31T42 33L40 40H2Z" fill="#2bbded" opacity=".78"/><path d="M8 4H34L40 35H4Z" fill="url(#b94Concrete)" stroke="#d8f0f7" stroke-width="1.2"/><path d="M7 3H36V8H7Z" fill="#d7e5e4" stroke="#5a7a85"/><path d="M12 9H16L13 35H8ZM21 9H25L26 35H20ZM30 9H33L39 35H33Z" fill="#365c6b"/><path d="M13 11H15L12 35H9ZM22 11H24L25 35H21ZM31 11H32L37 35H34Z" fill="#68dbfa"/></symbol>
 </defs>
-<rect width="760" height="1320" fill="url(#b94Bg)"/>
+<rect width="760" height="1240" fill="url(#b94Bg)"/>
 
-<!-- ORGANIC BASIN SHAPES -->
-<path d="M20 42C83 15 198 14 292 34C329 82 346 157 344 250C343 375 348 484 342 604C337 733 345 854 344 984C343 1101 321 1204 287 1275C221 1300 122 1298 58 1268C29 1218 20 1137 21 1032L18 192C17 126 18 79 20 42Z" fill="url(#b94Thu)" stroke="#77bfa6" stroke-opacity=".58" stroke-width="2.4"/>
-<path d="M20 42C83 15 198 14 292 34C329 82 346 157 344 250C343 375 348 484 342 604C337 733 345 854 344 984C343 1101 321 1204 287 1275C221 1300 122 1298 58 1268C29 1218 20 1137 21 1032L18 192C17 126 18 79 20 42Z" fill="url(#b94Topo)"/>
-<path d="M356 34C439 10 573 13 683 40C728 83 744 153 741 256C738 371 744 487 738 605C733 733 741 849 739 974C737 1094 721 1198 694 1266C617 1294 501 1295 411 1267C374 1213 359 1128 360 1025L354 219C352 139 353 79 356 34Z" fill="url(#b94Vu)" stroke="#a9ba82" stroke-opacity=".58" stroke-width="2.4"/>
-<path d="M356 34C439 10 573 13 683 40C728 83 744 153 741 256C738 371 744 487 738 605C733 733 741 849 739 974C737 1094 721 1198 694 1266C617 1294 501 1295 411 1267C374 1213 359 1128 360 1025L354 219C352 139 353 79 356 34Z" fill="url(#b94Topo)"/>
-<text x="66" y="53" class="b94-basin-title">LƯU VỰC SÔNG THU BỒN</text>
-<text x="420" y="53" class="b94-basin-title">LƯU VỰC SÔNG VU GIA</text>
+<!-- MẢNG LƯU VỰC: 34% THU BỒN / 66% VU GIA -->
+<path d="M18 42C66 19 165 14 248 34C270 77 278 142 276 232C274 351 282 471 277 594C273 716 281 835 277 962C273 1070 263 1164 241 1205C184 1227 93 1226 48 1207C25 1164 17 1093 18 1004L16 202C15 132 15 80 18 42Z" fill="url(#b94Thu)" stroke="#76bea6" stroke-opacity=".6" stroke-width="2.2"/>
+<path d="M18 42C66 19 165 14 248 34C270 77 278 142 276 232C274 351 282 471 277 594C273 716 281 835 277 962C273 1070 263 1164 241 1205C184 1227 93 1226 48 1207C25 1164 17 1093 18 1004L16 202C15 132 15 80 18 42Z" fill="url(#b94Topo)"/>
+<path d="M286 34C371 10 574 10 692 39C733 84 746 159 742 268C738 382 746 500 740 620C734 744 742 866 739 982C736 1090 724 1170 700 1206C603 1230 428 1232 332 1207C300 1165 287 1084 289 985L283 214C281 138 282 79 286 34Z" fill="url(#b94Vu)" stroke="#a7b982" stroke-opacity=".6" stroke-width="2.2"/>
+<path d="M286 34C371 10 574 10 692 39C733 84 746 159 742 268C738 382 746 500 740 620C734 744 742 866 739 982C736 1090 724 1170 700 1206C603 1230 428 1232 332 1207C300 1165 287 1084 289 985L283 214C281 138 282 79 286 34Z" fill="url(#b94Topo)"/>
+<text x="46" y="55" class="b94-basin-title">LƯU VỰC SÔNG THU BỒN</text>
+<text x="440" y="55" class="b94-basin-title">LƯU VỰC SÔNG VU GIA</text>
 
-<!-- RIVER SYSTEM -->
+<!-- HỆ THỐNG SÔNG -->
 <g fill="none" class="b94-rivers">
- <!-- THU BON: vertical but gently meandering -->
- <path class="b94-river-outline" d="M258 250 C246 334 238 417 244 502 C251 594 238 678 238 765 C239 856 258 933 266 1012 C273 1092 277 1174 286 1250" stroke-width="23"/>
- <path class="b94-river-core" d="M258 250 C246 334 238 417 244 502 C251 594 238 678 238 765 C239 856 258 933 266 1012 C273 1092 277 1174 286 1250" stroke-width="14"/>
- <path class="basin-water-motion" d="M258 250 C246 334 238 417 244 502 C251 594 238 678 238 765 C239 856 258 933 266 1012 C273 1092 277 1174 286 1250"/>
- <!-- Song Tien -->
- <path class="b94-river-outline" d="M72 740 C126 752 174 779 238 818" stroke-width="14"/><path class="b94-river-core" d="M72 740 C126 752 174 779 238 818" stroke-width="8"/><path class="basin-water-motion" d="M72 740 C126 752 174 779 238 818"/>
+ <!-- Thu Bồn / Sông Tranh: trục dọc mềm -->
+ <path class="b94-river-outline" d="M174 238C165 334 171 426 169 520C167 617 178 708 175 801C172 891 181 986 188 1082C191 1132 194 1172 198 1208" stroke-width="22"/>
+ <path class="b94-river-core" d="M174 238C165 334 171 426 169 520C167 617 178 708 175 801C172 891 181 986 188 1082C191 1132 194 1172 198 1208" stroke-width="13"/>
+ <path class="basin-water-motion" d="M174 238C165 334 171 426 169 520C167 617 178 708 175 801C172 891 181 986 188 1082C191 1132 194 1172 198 1208"/>
+ <!-- Nguồn Thu Bồn -->
+ <path class="b94-river-outline" d="M58 500C95 521 130 559 169 610" stroke-width="13"/><path class="b94-river-core" d="M58 500C95 521 130 559 169 610" stroke-width="7"/><path class="basin-water-motion" d="M58 500C95 521 130 559 169 610"/>
+ <!-- Sông Tiên -->
+ <path class="b94-river-outline" d="M55 787C96 797 136 824 174 852" stroke-width="13"/><path class="b94-river-core" d="M55 787C96 797 136 824 174 852" stroke-width="7"/><path class="basin-water-motion" d="M55 787C96 797 136 824 174 852"/>
 
- <!-- VU GIA: main vertical trunk -->
- <path class="b94-river-outline" d="M590 330 C578 404 575 480 581 552 C588 630 579 705 582 777 C585 852 596 920 602 990 C608 1068 611 1152 618 1247" stroke-width="23"/>
- <path class="b94-river-core" d="M590 330 C578 404 575 480 581 552 C588 630 579 705 582 777 C585 852 596 920 602 990 C608 1068 611 1152 618 1247" stroke-width="14"/>
- <path class="basin-water-motion" d="M590 330 C578 404 575 480 581 552 C588 630 579 705 582 777 C585 852 596 920 602 990 C608 1068 611 1152 618 1247"/>
-
- <!-- Song Bung from upper right -->
- <path class="b94-river-outline" d="M695 200 C668 232 635 268 590 330" stroke-width="18"/><path class="b94-river-core" d="M695 200 C668 232 635 268 590 330" stroke-width="10"/><path class="basin-water-motion" d="M695 200 C668 232 635 268 590 330"/>
- <!-- A Vuong joins Song Bung below SB4 -->
- <path class="b94-river-outline" d="M708 356 C680 374 644 396 579 421" stroke-width="16"/><path class="b94-river-core" d="M708 356 C680 374 644 396 579 421" stroke-width="9"/><path class="basin-water-motion" d="M708 356 C680 374 644 396 579 421"/>
- <!-- Dak Mi + Song Cai -->
- <path class="b94-river-outline" d="M392 520 C430 535 456 565 478 598 C503 635 534 647 579 646" stroke-width="18"/><path class="b94-river-core" d="M392 520 C430 535 456 565 478 598 C503 635 534 647 579 646" stroke-width="10"/><path class="basin-water-motion" d="M392 520 C430 535 456 565 478 598 C503 635 534 647 579 646"/>
- <!-- Song Thanh into Dak Mi / Cai -->
- <path class="b94-river-outline" d="M395 405 C414 443 411 484 392 520" stroke-width="13"/><path class="b94-river-core" d="M395 405 C414 443 411 484 392 520" stroke-width="7"/><path class="basin-water-motion" d="M395 405 C414 443 411 484 392 520"/>
- <!-- Song Con and Song Vang -->
- <path class="b94-river-outline" d="M710 575 C686 610 653 650 583 732" stroke-width="17"/><path class="b94-river-core" d="M710 575 C686 610 653 650 583 732" stroke-width="9"/><path class="basin-water-motion" d="M710 575 C686 610 653 650 583 732"/>
- <path class="b94-river-outline" d="M718 680 C686 698 657 717 621 744" stroke-width="12"/><path class="b94-river-core" d="M718 680 C686 698 657 717 621 744" stroke-width="7"/><path class="basin-water-motion" d="M718 680 C686 698 657 717 621 744"/>
- <!-- split connector BEFORE Ai Nghia to Giao Thuy -->
- <path class="b94-river-outline" d="M590 860 C545 889 492 920 442 950 C384 985 329 1005 266 1012" stroke-width="18"/><path class="b94-river-core" d="M590 860 C545 889 492 920 442 950 C384 985 329 1005 266 1012" stroke-width="10"/><path class="basin-water-motion" d="M590 860 C545 889 492 920 442 950 C384 985 329 1005 266 1012"/>
- <!-- lower Vu Gia / Yen -> Cam Le -->
- <path class="b94-river-outline" d="M602 990 C637 1011 673 1042 707 1082" stroke-width="15"/><path class="b94-river-core" d="M602 990 C637 1011 673 1042 707 1082" stroke-width="8"/><path class="basin-water-motion" d="M602 990 C637 1011 673 1042 707 1082"/>
+ <!-- Vu Gia main -->
+ <path class="b94-river-outline" d="M574 354C562 438 565 514 568 592C572 667 565 742 570 816C575 892 584 967 590 1042C595 1107 598 1162 603 1209" stroke-width="23"/>
+ <path class="b94-river-core" d="M574 354C562 438 565 514 568 592C572 667 565 742 570 816C575 892 584 967 590 1042C595 1107 598 1162 603 1209" stroke-width="14"/>
+ <path class="basin-water-motion" d="M574 354C562 438 565 514 568 592C572 667 565 742 570 816C575 892 584 967 590 1042C595 1107 598 1162 603 1209"/>
+ <!-- Sông Bung từ SB2 xuống -->
+ <path class="b94-river-outline" d="M682 211C652 248 617 292 574 354" stroke-width="18"/><path class="b94-river-core" d="M682 211C652 248 617 292 574 354" stroke-width="10"/><path class="basin-water-motion" d="M682 211C652 248 617 292 574 354"/>
+ <!-- Sông A Vương nhập Sông Bung -->
+ <path class="b94-river-outline" d="M703 366C670 382 630 401 565 428" stroke-width="16"/><path class="b94-river-core" d="M703 366C670 382 630 401 565 428" stroke-width="9"/><path class="basin-water-motion" d="M703 366C670 382 630 401 565 428"/>
+ <!-- Đăk Mi / Sông Cái -->
+ <path class="b94-river-outline" d="M377 532C422 546 451 574 475 607C499 639 526 650 568 650" stroke-width="18"/><path class="b94-river-core" d="M377 532C422 546 451 574 475 607C499 639 526 650 568 650" stroke-width="10"/><path class="basin-water-motion" d="M377 532C422 546 451 574 475 607C499 639 526 650 568 650"/>
+ <!-- Sông Thanh -->
+ <path class="b94-river-outline" d="M332 442C351 475 365 503 377 532" stroke-width="12"/><path class="b94-river-core" d="M332 442C351 475 365 503 377 532" stroke-width="7"/><path class="basin-water-motion" d="M332 442C351 475 365 503 377 532"/>
+ <!-- Sông Côn / Vàng -->
+ <path class="b94-river-outline" d="M704 566C676 603 640 650 568 724" stroke-width="17"/><path class="b94-river-core" d="M704 566C676 603 640 650 568 724" stroke-width="9"/><path class="basin-water-motion" d="M704 566C676 603 640 650 568 724"/>
+ <path class="b94-river-outline" d="M715 682C682 698 650 718 613 747" stroke-width="12"/><path class="b94-river-core" d="M715 682C682 698 650 718 613 747" stroke-width="7"/><path class="basin-water-motion" d="M715 682C682 698 650 718 613 747"/>
+ <!-- Nhánh nối tách trước Ái Nghĩa, nhập tại Giao Thủy -->
+ <path class="b94-river-outline" d="M570 827C519 861 464 895 410 926C347 962 280 990 181 1012" stroke-width="18"/><path class="b94-river-core" d="M570 827C519 861 464 895 410 926C347 962 280 990 181 1012" stroke-width="10"/><path class="basin-water-motion" d="M570 827C519 861 464 895 410 926C347 962 280 990 181 1012"/>
+ <!-- Hạ lưu Vu Gia / Sông Yên về Cẩm Lệ -->
+ <path class="b94-river-outline" d="M590 1000C630 1020 668 1053 711 1094" stroke-width="15"/><path class="b94-river-core" d="M590 1000C630 1020 668 1053 711 1094" stroke-width="8"/><path class="basin-water-motion" d="M590 1000C630 1020 668 1053 711 1094"/>
+ <!-- Chuyển nước Đăk Mi 4 về Thu Bồn (khái quát) -->
+ <path class="b94-transfer" d="M380 548C337 625 294 706 230 780"/>
 </g>
 
-<!-- JUNCTIONS -->
+<!-- ĐIỂM HỢP LƯU / TÁCH NHÁNH -->
 <g filter="url(#b94SoftGlow)">
- <circle cx="590" cy="330" r="6" class="b94-junction"/><circle cx="579" cy="421" r="6" class="b94-junction"/>
- <circle cx="579" cy="646" r="7" class="b94-junction"/><circle cx="583" cy="732" r="7" class="b94-junction"/>
- <circle cx="590" cy="860" r="7" class="b94-junction"/><circle cx="266" cy="1012" r="7" class="b94-junction"/>
- <circle cx="238" cy="818" r="6" class="b94-junction"/>
+ <circle cx="574" cy="354" r="6" class="b94-junction"/><circle cx="565" cy="428" r="6" class="b94-junction"/>
+ <circle cx="568" cy="650" r="7" class="b94-junction"/><circle cx="568" cy="724" r="7" class="b94-junction"/>
+ <circle cx="570" cy="827" r="7" class="b94-junction"/><circle cx="181" cy="1012" r="7" class="b94-junction"/>
+ <circle cx="169" cy="610" r="6" class="b94-junction"/><circle cx="174" cy="852" r="6" class="b94-junction"/>
 </g>
 
-<!-- PLANTS / DAMS -->
-<g><use href="#b94Dam" x="680" y="168" width="38" height="34"/><text x="610" y="162" class="b94-plant-label">TĐ Sông Bung 2</text></g>
-<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="626" y="282" width="42" height="38"/><text x="506" y="278" class="b94-plant-label">TĐ Sông Bung 4</text></g>
-<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="696" y="332" width="40" height="36"/><text x="624" y="328" class="b94-plant-label">TĐ A Vương</text></g>
-<g><use href="#b94Dam" x="577" y="370" width="30" height="27"/><text x="537" y="366" class="b94-small-label">SB4A</text></g>
-<g><use href="#b94Dam" x="575" y="420" width="30" height="27"/><text x="540" y="417" class="b94-small-label">SB5</text></g>
-<g><use href="#b94Dam" x="575" y="470" width="30" height="27"/><text x="540" y="467" class="b94-small-label">SB6</text></g>
-<g><use href="#b94Dam" x="375" y="493" width="40" height="36"/><text x="372" y="486" class="b94-plant-label">TĐ Đăk Mi 4</text></g>
-<g><use href="#b94Dam" x="698" y="546" width="38" height="34"/><text x="630" y="540" class="b94-plant-label">TĐ Sông Côn 2</text></g>
-<g><use href="#b94Dam" x="706" y="652" width="37" height="33"/><text x="647" y="645" class="b94-plant-label">TĐ An Điềm</text></g>
-<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="247" y="222" width="43" height="39"/><text x="154" y="216" class="b94-plant-label">TĐ Sông Tranh 2</text></g>
+<!-- ĐẬP / NHÀ MÁY -->
+<g><use href="#b94Dam" x="667" y="174" width="38" height="34"/><text x="618" y="167" class="b94-plant-label">TĐ Sông Bung 2</text></g>
+<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="610" y="283" width="42" height="38"/><text x="603" y="275" class="b94-plant-label">TĐ Sông Bung 4</text></g>
+<g><use href="#b94Dam" x="575" y="346" width="35" height="31"/><text x="536" y="337" class="b94-small-label">SB4A</text></g>
+<g><use href="#b94Dam" x="565" y="390" width="34" height="30"/><text x="533" y="385" class="b94-small-label">SB5</text></g>
+<g><use href="#b94Dam" x="558" y="435" width="34" height="30"/><text x="527" y="431" class="b94-small-label">SB6</text></g>
+<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="681" y="337" width="42" height="38"/><text x="642" y="329" class="b94-plant-label">TĐ A Vương</text></g>
+<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="354" y="500" width="42" height="38"/><text x="319" y="493" class="b94-plant-label">TĐ Đăk Mi 4</text></g>
+<g><use href="#b94Dam" x="685" y="530" width="38" height="34"/><text x="635" y="523" class="b94-plant-label">TĐ Sông Côn 2</text></g>
+<g><use href="#b94Dam" x="699" y="646" width="36" height="33"/><text x="650" y="639" class="b94-plant-label">TĐ An Điềm</text></g>
+<g class="b94-dam" role="button" tabindex="0"><use href="#b94Dam" x="151" y="202" width="44" height="40"/><text x="113" y="195" class="b94-plant-label">TĐ Sông Tranh 2</text></g>
 
-<!-- HORIZONTAL LABELS -->
-<text x="628" y="250" class="b94-river-label">Sông Bung</text>
-<text x="642" y="405" class="b94-river-label">Sông A Vương</text>
-<text x="402" y="558" class="b94-river-label">Sông Đăk Mi</text>
-<text x="488" y="624" class="b94-river-label">Sông Cái</text>
-<text x="648" y="612" class="b94-river-label">Sông Côn</text>
-<text x="642" y="716" class="b94-river-label">Sông Vàng</text>
-<text x="616" y="816" class="b94-river-label">Sông Vu Gia</text>
-<text x="136" y="420" class="b94-river-label">Sông Tranh</text>
-<text x="103" y="715" class="b94-river-label">Sông Tiên</text>
-<text x="108" y="920" class="b94-river-label">Sông Thu Bồn</text>
-<text x="366" y="967" class="b94-connector-label">Nhánh nối Vu Gia → Thu Bồn</text>
+<!-- NHÃN SÔNG / ĐỊA DANH: TẤT CẢ NẰM NGANG -->
+<text x="185" y="350" class="b94-river-label">Sông Tranh</text>
+<text x="88" y="486" class="b94-river-label">Nguồn Thu Bồn</text>
+<text x="68" y="775" class="b94-river-label">Sông Tiên</text>
+<text x="73" y="925" class="b94-river-label">Sông Thu Bồn</text>
+<text x="604" y="247" class="b94-river-label">Sông Bung</text>
+<text x="616" y="405" class="b94-river-label">Sông A Vương</text>
+<text x="393" y="567" class="b94-river-label">Sông Đăk Mi</text>
+<text x="470" y="632" class="b94-river-label">Sông Cái</text>
+<text x="633" y="601" class="b94-river-label">Sông Côn</text>
+<text x="647" y="709" class="b94-river-label">Sông Vàng</text>
+<text x="600" y="793" class="b94-river-label">Sông Vu Gia</text>
+<text x="628" y="1030" class="b94-river-label">Sông Yên</text>
+<text x="343" y="914" class="b94-connector-label">Nhánh nối Vu Gia → Thu Bồn</text>
+<text x="291" y="705" class="b94-transfer-label">Chuyển nước Đăk Mi 4 (khái quát)</text>
 
-<!-- LANDMARKS -->
-<g class="b94-station" role="button" tabindex="0"><circle cx="581" cy="690" r="7" fill="#ff686f" stroke="#fff4e9" stroke-width="2"/><text x="598" y="687" class="b94-station-label">Hội Khách</text><text x="598" y="704" class="b94-small-label">(Đại Sơn)</text></g>
-<circle cx="461" cy="601" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="421" y="585" class="b94-place-label">Thành Mỹ</text>
-<circle cx="690" cy="630" r="6" fill="#ffe077" stroke="#fffbd8" stroke-width="1.5"/><text x="632" y="628" class="b94-place-label">An Điềm</text><text x="632" y="644" class="b94-small-label">(Đại Hưng)</text>
-<circle cx="620" cy="770" r="6" fill="#ffe077" stroke="#fffbd8" stroke-width="1.5"/><text x="638" y="768" class="b94-place-label">Hà Tân</text><text x="638" y="785" class="b94-small-label">(Đại Lãnh)</text>
-<g class="b94-station" role="button" tabindex="0"><circle cx="596" cy="930" r="7" fill="#ff686f" stroke="#fff4e9" stroke-width="2"/><text x="613" y="927" class="b94-station-label">Ái Nghĩa</text></g>
-<circle cx="266" cy="1012" r="6.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.8"/><text x="196" y="1038" class="b94-station-label">Giao Thủy</text>
-<circle cx="244" cy="520" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="174" y="514" class="b94-station-label">Trà My</text>
-<circle cx="238" cy="818" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="170" y="811" class="b94-station-label">Nông Sơn</text>
-<circle cx="279" cy="1142" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="220" y="1135" class="b94-station-label">Cầu Lâu</text>
-<circle cx="704" cy="1080" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="646" y="1071" class="b94-station-label">Cẩm Lệ</text>
-<text x="494" y="850" class="b94-small-label">Điểm tách nhánh trước Ái Nghĩa</text>
+<!-- TRẠM / ĐIỂM -->
+<circle cx="171" cy="536" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="116" y="526" class="b94-station-label">Trà My</text>
+<circle cx="175" cy="750" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="106" y="742" class="b94-station-label">Nông Sơn</text>
+<circle cx="181" cy="1012" r="6" fill="#ff686f" stroke="#fff4e9" stroke-width="1.8"/><text x="116" y="1002" class="b94-station-label">Giao Thủy</text>
+<circle cx="190" cy="1126" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="127" y="1116" class="b94-station-label">Cầu Lâu</text>
+<circle cx="425" cy="594" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="386" y="584" class="b94-station-label">Thành Mỹ</text>
+<circle cx="568" cy="690" r="6" fill="#ff686f" stroke="#fff4e9" stroke-width="1.8"/><text x="581" y="681" class="b94-station-label">Hội Khách</text><text x="581" y="695" class="b94-small-label">(Đại Sơn)</text>
+<circle cx="649" cy="593" r="5.5" fill="#ffd35f" stroke="#fff7cd" stroke-width="1.5"/><text x="657" y="588" class="b94-place-label">An Điềm</text><text x="657" y="600" class="b94-small-label">(Đại Hưng)</text>
+<circle cx="611" cy="686" r="5.5" fill="#ffd35f" stroke="#fff7cd" stroke-width="1.5"/><text x="620" y="680" class="b94-place-label">Hà Tân</text><text x="620" y="692" class="b94-small-label">(Đại Lãnh)</text>
+<circle cx="580" cy="895" r="6" fill="#ff686f" stroke="#fff4e9" stroke-width="1.8"/><text x="592" y="900" class="b94-station-label">Ái Nghĩa</text>
+<circle cx="710" cy="1093" r="5.5" fill="#ff686f" stroke="#fff4e9" stroke-width="1.6"/><text x="655" y="1084" class="b94-station-label">Cẩm Lệ</text>
+<text x="493" y="816" class="b94-small-label">Điểm tách nhánh trước Ái Nghĩa</text>
 
-<!-- CARD LEADERS: thin, never crossing key river corridors -->
-<g class="b94-info-leaders" fill="none" stroke-width="1.5" stroke-dasharray="4 5" opacity=".72">
- <path d="M228 150 C250 172 267 194 269 224" stroke="#ffd08a"/>
- <path d="M548 161 C572 183 604 219 637 287" stroke="#67e2bd"/>
- <path d="M652 172 C676 213 691 267 710 337" stroke="#64d7ff"/>
- <path d="M560 430 C514 450 456 478 398 507" stroke="#c6acff"/>
- <path d="M556 670 C568 676 574 683 581 690" stroke="#70ead4"/>
- <path d="M556 900 C572 911 584 921 596 930" stroke="#70ead4"/>
+<!-- LEADER LINE TỪ THẺ SỐ LIỆU ĐẾN ĐÚNG ĐỐI TƯỢNG -->
+<g class="b94-info-leaders" fill="none" stroke-width="1.35" stroke-dasharray="4 5" opacity=".72">
+ <path d="M223 154C240 170 251 188 169 220" stroke="#ffd08a"/>
+ <path d="M485 168C515 205 552 245 622 298" stroke="#67e2bd"/>
+ <path d="M624 169C655 205 682 263 700 347" stroke="#64d7ff"/>
+ <path d="M485 420C455 448 420 479 374 516" stroke="#c6acff"/>
+ <path d="M494 666C522 675 545 683 568 690" stroke="#70ead4"/>
+ <path d="M494 871C526 878 553 886 580 895" stroke="#70ead4"/>
 </g>
 
-<!-- LIVE CARDS IN DEDICATED BLANK ZONES -->
-<foreignObject x="26" y="82" width="214" height="112" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="SONGTRANH2" data-basin-type="reservoir" style="--bnode:#ffd08a" aria-label="Hồ Sông Tranh 2"><span class="basin-node-header"><strong class="basin-node-title">Hồ Sông Tranh 2</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
+<!-- THẺ LIVE: GỌN, NẰM NGOÀI HÀNH LANG SÔNG -->
+<foreignObject x="30" y="80" width="205" height="102" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="SONGTRANH2" data-basin-type="reservoir" style="--bnode:#ffd08a" aria-label="Hồ Sông Tranh 2"><span class="basin-node-header"><strong class="basin-node-title">Hồ Sông Tranh 2</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
 
-<foreignObject x="374" y="82" width="184" height="108" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="SONGBUNG4" data-basin-type="reservoir" style="--bnode:#67e2bd" aria-label="Hồ Sông Bung 4"><span class="basin-node-header"><strong class="basin-node-title">Hồ Sông Bung 4</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
-<foreignObject x="568" y="82" width="166" height="108" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="AVUONG" data-basin-type="reservoir" style="--bnode:#64d7ff" aria-label="Hồ A Vương"><span class="basin-node-header"><strong class="basin-node-title">Hồ A Vương</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
-<foreignObject x="374" y="376" width="190" height="108" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="DAKMI4" data-basin-type="reservoir" style="--bnode:#c6acff" aria-label="Hồ Đăk Mi 4"><span class="basin-node-header"><strong class="basin-node-title">Hồ Đăk Mi 4</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
-<foreignObject x="374" y="606" width="190" height="102" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node basin-node-gauge" data-basin-code="HOIKHACH" data-basin-type="gauge" style="--bnode:#70ead4" aria-label="Trạm TV Hội Khách"><span class="basin-node-header"><strong class="basin-node-title">Trạm TV Hội Khách</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>Mực nước</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-forecast">Dự báo +4 giờ <b data-field="forecast">—</b><span>m</span></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
-<foreignObject x="374" y="842" width="190" height="102" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node basin-node-gauge" data-basin-code="AINGHIA" data-basin-type="gauge" style="--bnode:#70ead4" aria-label="Trạm TV Ái Nghĩa"><span class="basin-node-header"><strong class="basin-node-title">Trạm TV Ái Nghĩa</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>Mực nước</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-forecast">Dự báo +4 giờ <b data-field="forecast">—</b><span>m</span></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
+<foreignObject x="300" y="80" width="190" height="102" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="SONGBUNG4" data-basin-type="reservoir" style="--bnode:#67e2bd" aria-label="Hồ Sông Bung 4"><span class="basin-node-header"><strong class="basin-node-title">Hồ Sông Bung 4</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
+<foreignObject x="520" y="80" width="205" height="102" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="AVUONG" data-basin-type="reservoir" style="--bnode:#64d7ff" aria-label="Hồ A Vương"><span class="basin-node-header"><strong class="basin-node-title">Hồ A Vương</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
+<foreignObject x="300" y="332" width="190" height="102" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node" data-basin-code="DAKMI4" data-basin-type="reservoir" style="--bnode:#c6acff" aria-label="Hồ Đăk Mi 4"><span class="basin-node-header"><strong class="basin-node-title">Hồ Đăk Mi 4</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>MNH</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-flow"><span>Q về <b data-field="inflow">—</b></span><span>Q máy <b data-field="turbine">—</b></span><span>Q tràn <b data-field="spill">—</b></span><em>m³/s</em></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
+<foreignObject x="300" y="616" width="200" height="88" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node basin-node-gauge" data-basin-code="HOIKHACH" data-basin-type="gauge" style="--bnode:#70ead4" aria-label="Trạm TV Hội Khách"><span class="basin-node-header"><strong class="basin-node-title">Trạm TV Hội Khách</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>Mực nước</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-forecast">Dự báo +4 giờ <b data-field="forecast">—</b><span>m</span></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
+<foreignObject x="300" y="824" width="200" height="88" class="b94-card-fo"><div xmlns="http://www.w3.org/1999/xhtml" class="b94-card-wrap"><button type="button" class="basin-node basin-node-gauge" data-basin-code="AINGHIA" data-basin-type="gauge" style="--bnode:#70ead4" aria-label="Trạm TV Ái Nghĩa"><span class="basin-node-header"><strong class="basin-node-title">Trạm TV Ái Nghĩa</strong><span class="basin-node-tag is-missing" data-field="status">Đang tải</span></span><span class="basin-node-reading"><small>Mực nước</small><b data-field="level">—</b><em>m</em></span><span class="basin-node-forecast">Dự báo +4 giờ <b data-field="forecast">—</b><span>m</span></span><span class="basin-node-time" data-field="stamp">Nguồn: PCTT Đà Nẵng</span></button></div></foreignObject>
 
-<!-- COMPACT LEGEND -->
-<g transform="translate(384 1164)"><rect width="205" height="102" rx="12" fill="#07283be8" stroke="#426579"/><text x="12" y="22" class="b94-key-title">CHÚ GIẢI</text><path d="M14 42H43" stroke="#62d6f9" stroke-width="5" marker-end="url(#b94Arrow)"/><text x="54" y="46" class="b94-key-text">Sông / hướng dòng</text><circle cx="22" cy="65" r="5" fill="#ff686f" stroke="#fff4e9"/><text x="54" y="69" class="b94-key-text">Trạm / mốc</text><use href="#b94Dam" x="13" y="77" width="22" height="19"/><text x="54" y="92" class="b94-key-text">Nhà máy thủy điện</text></g>
+<!-- CHÚ GIẢI GỌN Ở VÙNG TRỐNG DƯỚI PHẢI -->
+<g transform="translate(520 1120)"><rect width="190" height="88" rx="11" fill="#07283be8" stroke="#426579"/><text x="11" y="19" class="b94-key-title">CHÚ GIẢI</text><path d="M13 37H39" stroke="#62d6f9" stroke-width="5" marker-end="url(#b94Arrow)"/><text x="48" y="41" class="b94-key-text">Sông / hướng dòng</text><circle cx="20" cy="58" r="4.5" fill="#ff686f" stroke="#fff4e9"/><text x="48" y="62" class="b94-key-text">Trạm / mốc</text><use href="#b94Dam" x="11" y="66" width="19" height="17"/><text x="48" y="79" class="b94-key-text">Nhà máy thủy điện</text></g>
 </svg>
-
    </div>
    <button class="basin-exit" id="basinExitFullscreen" type="button" style="display:none">✕ Thoát toàn màn hình</button>
  </div>
  <div class="basin-map-key"><span><i style="--swatch:#60d9fb"></i>Sông / hướng dòng minh họa</span><span><i style="--swatch:#ff686f"></i>Trạm / mốc theo sơ đồ</span><span>Q: m³/s · Mực nước: m</span></div>
  <div class="basin-info-line">Nguồn số liệu: <a href="https://pctt.danang.gov.vn/" target="_blank" rel="noopener noreferrer" style="color:#7edfff">PCTT Đà Nẵng</a> (hạ du qua Supabase). Sơ đồ nguyên lý, không theo tỷ lệ; hoạt ảnh không biểu diễn vận tốc hoặc thời gian truyền lũ.</div>
 </section>
- <dialog class="basin-dlg" id="basinGaugeDialog" aria-labelledby="basinGaugeTitle">
+<dialog class="basin-dlg" id="basinGaugeDialog" aria-labelledby="basinGaugeTitle">
    <div class="basin-dlg-head"><div><h3 id="basinGaugeTitle">Trạm thủy văn</h3><div class="basin-dlg-sub" id="basinGaugeSubtitle"></div></div><button class="basin-action" id="basinGaugeClose" type="button">✕ Đóng</button></div>
    <div class="basin-dlg-value" id="basinGaugeLevel">— m</div>
    <div class="basin-dlg-rows" id="basinGaugeRows"></div>
@@ -2528,9 +2547,11 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
     if(!frame)return;
     if(mobile()){
       frame.classList.remove('basin-hide-cards');
-      frame.classList.add('basin-mobile-mini');
+      frame.classList.remove('basin-mobile-mini');
+      frame.classList.add('basin-portrait-v354');
     }else{
       frame.classList.remove('basin-mobile-mini');
+      frame.classList.remove('basin-portrait-v354');
     }
   }
   function syncQuickOverlay(name){
