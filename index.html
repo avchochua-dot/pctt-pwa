@@ -1203,12 +1203,13 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
         <button type="button" class="windy-quick" data-windy-quick-overlay="radar">☔ Radar</button>
         <button type="button" class="windy-quick" data-windy-quick-overlay="wind">〰 Gió</button>
         <button type="button" class="windy-quick" data-windy-quick-overlay="clouds">☁ Mây</button>
+        <button type="button" class="windy-quick" data-windy-quick-overlay="satellite">🛰 Vệ tinh</button>
         <button type="button" class="windy-quick" data-windy-quick-overlay="temp">🌡 Nhiệt</button>
       </div>
       <div class="windy-quick-place"><button type="button" class="windy-place" data-windy-place="basin">⌖ Lưu vực</button><button type="button" class="windy-place" data-windy-place="avuong">⌖ A Vương</button></div>
     </div>
     <div class="v9-map-grid"><div class="v9-embed-container" id="windyEmbedContainer"><iframe id="windyFrame" title="Windy – Bản đồ mưa, radar và thời tiết khu vực Vu Gia Thu Bồn" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <aside class="v9-side"><div class="v9-side-block"><h3>Lớp thời tiết</h3><div class="v9-pill-group" id="windyOverlayButtons"><button type="button" class="v9-pill is-active" data-overlay="rain">🌧 Mưa</button><button type="button" class="v9-pill" data-overlay="radar">☔ Radar</button><button type="button" class="v9-pill" data-overlay="wind">〰 Gió</button><button type="button" class="v9-pill" data-overlay="clouds">☁ Mây</button><button type="button" class="v9-pill" data-overlay="temp">🌡 Nhiệt độ</button></div></div>
+      <aside class="v9-side"><div class="v9-side-block"><h3>Lớp thời tiết</h3><div class="v9-pill-group" id="windyOverlayButtons"><button type="button" class="v9-pill is-active" data-overlay="rain">🌧 Mưa</button><button type="button" class="v9-pill" data-overlay="radar">☔ Radar</button><button type="button" class="v9-pill" data-overlay="wind">〰 Gió</button><button type="button" class="v9-pill" data-overlay="clouds">☁ Mây</button><button type="button" class="v9-pill" data-overlay="satellite">🛰 Vệ tinh</button><button type="button" class="v9-pill" data-overlay="temp">🌡 Nhiệt độ</button></div></div>
       <div class="v9-side-block"><h3>Mô hình dự báo</h3><select id="windyModel" aria-label="Mô hình dự báo Windy"><option value="ecmwf">ECMWF</option><option value="gfs">GFS</option><option value="icon">ICON</option></select><p>Một số lớp không hỗ trợ mọi mô hình trong khung nhúng. Windy có thể tự chuyển sang mô hình mặc định.</p></div>
       <div class="v9-side-block"><h3>Khu vực theo dõi</h3><div class="v9-pill-group"><button type="button" class="v9-pill" id="windyFocusBasin">⌖ Toàn lưu vực</button><button type="button" class="v9-pill" id="windyFocusAv">⌖ A Vương</button></div><p>Thay đổi lớp hoặc khu vực sẽ tải lại khung dự báo chính thức.</p><button type="button" class="btn" id="windyReload">↻ Tải lại bản đồ</button></div>
       <div class="v9-side-block"><h3>Thông tin sử dụng</h3><p>Ưu tiên lớp <strong>Mưa</strong> để xem xu thế dự báo và <strong>Radar</strong> để theo dõi mưa thực đo. Tốc độ gió, nhiệt độ và mô hình chi tiết có thể xem trực tiếp trên Windy.</p><p id="windyEmbedStatus" class="v9-side-note">Chưa tải Windy.</p></div></aside>
@@ -1756,7 +1757,8 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
  const v9Windy={overlay:'rain',model:'ecmwf',lat:15.856179,lon:107.989333,zoom:8};
  function windyUrl(){
    const u=new URL('https://embed.windy.com/embed2.html');
-   const kv={lat:v9Windy.lat,lon:v9Windy.lon,detailLat:v9Windy.lat,detailLon:v9Windy.lon,width:1200,height:700,zoom:v9Windy.zoom,level:'surface',overlay:v9Windy.overlay,product:v9Windy.model,menu:'',message:'true',marker:'true',calendar:'now',pressure:'',type:'map',location:'coordinates',detail:'',metricWind:'default',metricTemp:'default'};
+   const windyProduct=v9Windy.overlay==='satellite'?'radar':v9Windy.model;
+   const kv={lat:v9Windy.lat,lon:v9Windy.lon,detailLat:v9Windy.lat,detailLon:v9Windy.lon,width:1200,height:700,zoom:v9Windy.zoom,level:'surface',overlay:v9Windy.overlay,product:windyProduct,menu:'',message:'true',marker:'true',calendar:'now',pressure:'',type:'map',location:'coordinates',detail:'',metricWind:'default',metricTemp:'default'};
    for(const [k,v] of Object.entries(kv))u.searchParams.set(k,String(v));return u.toString();
  }
  function ensureWindyMap(force=false){
