@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon-180.png" />
 
-<!-- VGTB PWA V3.4 · refined mobile app 2026-10-17 -->
+<!-- VGTB PWA V3.6 · RF V2 & AI +4h mobile integration 2026-10-21 -->
 <title>VGTB · Giám sát thủy văn sông Vu Gia – Thu Bồn</title>
 <style>
 :root{
@@ -975,6 +975,47 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
 #view-basin .basin-info-line{margin-top:14px;font-size:10px;line-height:1.5;color:#8fb7cb;padding:0 4px}
 @media(max-width:420px){.bv-head h2{font-size:19px}.bv-lvl b{font-size:27px}}
 </style>
+
+<style id="pwa-rf-v2-h4-upgrade">
+/* RF V2 + AI +4 giờ - giao diện PWA dành cho vận hành. */
+.gauge-card .gauge-current .gauge-big{flex:0 0 auto!important}
+.gauge-card .gauge-current .gauge-delta{flex:1 1 0%;min-width:0!important}
+.gauge-forecast-pair{width:min(255px,100%);max-width:100%;margin-top:3px;padding:3px 7px;border:1px solid #2d7388;border-radius:9px;background:linear-gradient(110deg,rgba(9,63,79,.92),rgba(8,38,54,.95));line-height:1}
+.gauge-fc-grid{display:flex;flex-direction:column;gap:2px}
+.gauge-fc-cell{display:flex;align-items:center;justify-content:space-between;gap:5px;height:17px;min-height:17px;max-height:17px;padding-left:6px;border-left:2px solid #5accf2;min-width:0}
+.gauge-fc-cell.ai{border-left-color:#ffc16f}
+.gauge-fc-label{display:inline-flex;align-items:center;gap:2px;font-size:10px;font-weight:850;color:#bdeefe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.gauge-fc-cell.ai .gauge-fc-label{color:#ffe2b1}
+.gauge-fc-target{color:#9ccfdf;font-size:9px;font-weight:760;white-space:nowrap}
+.gauge-fc-cell.ai .gauge-fc-target{color:#e5bf92}
+.gauge-fc-num{flex:none;font-size:12px;font-weight:950;color:#fff;white-space:nowrap;font-variant-numeric:tabular-nums}
+.gauge-fc-cell.ai .gauge-fc-num{color:#ffe5b7}
+.gauge-fc-num em{font-size:9px;color:#b9d4e2;font-style:normal}
+.gauge-fc-stale{margin-left:2px;color:#ffc46e;font-size:10px}
+#v91DownControls.pwa-rf-controls{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:5px!important;margin:5px 0 7px!important;padding:5px!important;min-width:0!important}
+#v91DownControls .pwa-rf-stations{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:5px!important;margin:0!important}
+#v91DownControls .pwa-rf-stations .v91-group-label{font-size:9px!important;flex:none!important}
+#v91DownControls .pwa-rf-stations .v91-choice{flex:1 1 0%!important;width:auto!important;min-width:0!important}
+#v91DownControls .pwa-rf-visibility{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:4px!important;width:100%!important;margin:0!important}
+#v91DownControls .pwa-rf-visibility .v91-choice{min-width:0!important;width:100%!important;padding:5px 2px!important;min-height:31px!important;font-size:9px!important;line-height:1.12!important;white-space:normal!important;border-radius:8px!important}
+#pwaToggleRF.is-active{background:#513c72!important;border-color:#a67ae4!important;color:#fff1ff!important}
+#pwaToggleAI.is-active{background:#694b28!important;border-color:#e5b567!important;color:#fff0d5!important}
+#pwaTogglePeak.is-active{background:#164f61!important;border-color:#45cee4!important;color:#dcfaff!important}
+#view-charts #downChart{height:268px!important;min-height:268px!important;max-height:268px!important;overflow:hidden!important}
+#view-charts #downChart svg{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;height:268px!important;min-height:268px!important;max-height:268px!important}
+#downChartNote{display:flex!important;flex-wrap:wrap!important;gap:4px 12px!important;margin-top:6px!important;padding:7px 9px!important;border:1px solid #31556c!important;border-radius:9px!important;background:#0b2f46!important;color:#d3eefb!important;font-size:10px!important;line-height:1.5!important}
+#downChartNote b{font-weight:900}
+#downChartNote .pwa-rf-v{color:#dfb9ff}
+#downChartNote .pwa-ai-v{color:#ffd38f}
+#downChartNote .pwa-diff-v{color:#79ead9}
+#downChartThresholds{gap:5px 10px!important;font-size:9px!important;margin:5px 0 0!important}
+#downChartThresholds span{white-space:nowrap}
+@media(max-width:390px){
+ .gauge-fc-label{font-size:9.4px}
+ .gauge-fc-num{font-size:11.5px}
+ #v91DownControls .pwa-rf-visibility .v91-choice{font-size:8.3px!important}
+}
+</style>
 </head>
 <body>
 <div class="screen">
@@ -1137,12 +1178,17 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
       </div>
       <div class="v9-chart-wrap" id="hydroChart" role="img" aria-label="Bốn đường dữ liệu vận hành của hồ được chọn, hai trục mực nước và lưu lượng"><div class="v9-empty">Đang nạp lịch sử hồ từ PCTT…</div></div><div class="v91-chart-legend" id="v91ChartLegend"><span><i style="--key:#50d6ff"></i>MNH <b>(m) · trục trái</b></span><span><i style="--key:#91a5ff"></i>Q về</span><span><i style="--key:#4fe4b1"></i>Q qua máy</span><span><i style="--key:#ffc478"></i>Q qua tràn <b>(m³/s) · trục phải</b></span></div><div class="v9-stats" id="hydroChartStats"></div><div class="v9-chart-caption" id="hydroChartNote">Thời gian chuẩn GMT+7, giá trị từng giờ.</div>
     </section>
-    <section class="v9-pane" aria-labelledby="chartDownTitle"><div class="v9-title-row"><div><h3 id="chartDownTitle">II. Mực nước các trạm thủy văn hạ du và dự báo +4 giờ</h3><p>Quan trắc là đường màu xanh; dự báo +4h (nếu có) dùng đường nét đứt màu tím, không phải giá trị thực đo.</p></div></div>
-      <div class="v91-control-bar" id="v91DownControls" role="group" aria-label="Chọn trạm và đường báo động">
-        <div class="v91-control-group" role="group" aria-label="Chọn trạm hạ du"><span class="v91-group-label">TRẠM</span><button type="button" class="v91-choice v91-station is-active" data-chart-station="HOIKHACH" aria-pressed="true">Hội Khách</button><button type="button" class="v91-choice v91-station" data-chart-station="AINGHIA" aria-pressed="false">Ái Nghĩa</button></div>
-        <div class="v91-control-group"><button type="button" class="v91-choice v91-alarm is-active" id="v91ToggleAlarm" aria-pressed="true">✓ Đường BĐ I–III</button></div>
+    <section class="v9-pane" aria-labelledby="chartDownTitle"><div class="v9-title-row"><div><h3 id="chartDownTitle">II. Mực nước hạ du · So sánh dự báo +4 giờ</h3><p>Thực đo · RF V2 từng giờ · Mô hình AI +4h</p></div></div>
+      <div class="v91-control-bar pwa-rf-controls" id="v91DownControls" role="group" aria-label="Chọn trạm và ẩn hiện các đường">
+        <div class="v91-control-group pwa-rf-stations" role="group" aria-label="Chọn trạm hạ du"><span class="v91-group-label">TRẠM</span><button type="button" class="v91-choice v91-station is-active" data-chart-station="HOIKHACH" aria-pressed="true">Hội Khách</button><button type="button" class="v91-choice v91-station" data-chart-station="AINGHIA" aria-pressed="false">Ái Nghĩa</button></div>
+        <div class="v91-control-group pwa-rf-visibility" role="group" aria-label="Hiển thị nguồn dự báo và các mức tham chiếu">
+          <button type="button" class="v91-choice is-active" id="pwaToggleRF" aria-pressed="true">✓ RF V2</button>
+          <button type="button" class="v91-choice is-active" id="pwaToggleAI" aria-pressed="true">✓ Mô hình AI</button>
+          <button type="button" class="v91-choice v91-alarm is-active" id="v91ToggleAlarm" aria-pressed="true">✓ BĐ I–III</button>
+          <button type="button" class="v91-choice is-active" id="pwaTogglePeak" aria-pressed="true">✓ Đỉnh lũ 2025</button>
+        </div>
       </div>
-      <div class="v9-chart-wrap" id="downChart" role="img" aria-label="Biểu đồ trạm hạ du có dự báo bốn giờ"><div class="v9-empty">Đang nạp quan trắc hạ du…</div></div><div class="v9-chart-thresholds" id="downChartThresholds"></div><div class="v9-chart-caption" id="downChartNote"></div>
+      <div class="v9-chart-wrap" id="downChart" role="img" aria-label="Biểu đồ mực nước thực đo, RF V2 H+1 đến H+4 và mô hình AI +4 giờ"><div class="v9-empty">Đang nạp mực nước và dự báo hạ du…</div></div><div class="v9-chart-thresholds" id="downChartThresholds"></div><div class="v9-chart-caption pwa-rf-public-note" id="downChartNote"></div>
     </section>
   </section>
 <section class="site-view basin-workspace" id="view-basin" role="tabpanel" aria-labelledby="tabBasin" hidden>
@@ -1438,13 +1484,53 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    if(g.source==='missing')return 'PCTT Đà Nẵng · CHƯA CÓ SỐ LIỆU';
    return 'PCTT Đà Nẵng · ĐANG KẾT NỐI';
  }
+
+  function pwaRfGaugeH4(g){
+    const st=g.code==='HOIKHACH'?'HOI_KHACH':'AI_NGHIA';
+    const rf=v95LatestCompleteIssue(st);
+    const rf4=rf?.values?.find(p=>p.horizon===4);
+    const rfIssue=rf?.issue??null;
+    const rfTarget=Number.isFinite(rfIssue)?rfIssue+4*PWA_HOUR_MS:null;
+    const oldFromLive={
+      value:numVal(g.reading?.forecast4h),
+      target:msVn(g.reading?.forecast4hAt),
+      issue:msVn(g.reading?.forecast4hIssue)
+    };
+    const aligned=pwaAlignedAI.get(st)||null;
+    let ai=oldFromLive;
+    if(aligned && (ai.value===null || !Number.isFinite(ai.issue) || aligned.issue>ai.issue)){
+      ai={value:numVal(aligned.value),target:aligned.target,issue:aligned.issue};
+    }
+    return {rf:numVal(rf4?.value),rfIssue,rfTarget,ai:ai.value,aiIssue:ai.issue,aiTarget:ai.target};
+  }
+  function pwaGaugeForecastCompact(g){
+    const d=pwaRfGaugeH4(g);
+    const v=(n,places)=>n==null?'—':nfmt(n,places)+' <em>m</em>';
+    const stamp=(t)=>Number.isFinite(t)?' · '+escapeHtml(vnParts(t).hour):'';
+    const rfOld=Number.isFinite(d.rfIssue)&&Date.now()-d.rfIssue>LIVE_CONFIG.staleMs;
+    const aiOld=Number.isFinite(d.aiIssue)&&Date.now()-d.aiIssue>LIVE_CONFIG.staleMs;
+    const tooltip=(type,val,at)=>val==null?type+': chưa có dữ liệu':`${type}: ${nfmt(val,3)} m · ${Number.isFinite(at)?v9TimeLabel(at,true):'chưa có giờ dự báo'}`;
+    return `<div class="gauge-forecast-pair" aria-label="Hai mô hình dự báo mực nước +4 giờ">
+      <div class="gauge-fc-grid">
+        <div class="gauge-fc-cell" title="${escapeHtml(tooltip('RF V2 +4h',d.rf,d.rfTarget))}">
+          <span class="gauge-fc-label">RF V2 +4h<span class="gauge-fc-target">${stamp(d.rfTarget)}</span>${rfOld?'<span class="gauge-fc-stale" title="Dự báo cập nhật chậm">⚠</span>':''}</span>
+          <span class="gauge-fc-num">${v(d.rf,3)}</span>
+        </div>
+        <div class="gauge-fc-cell ai" title="${escapeHtml(tooltip('Mô hình AI +4h',d.ai,d.aiTarget))}">
+          <span class="gauge-fc-label">Mô hình AI +4h<span class="gauge-fc-target">${stamp(d.aiTarget)}</span>${aiOld?'<span class="gauge-fc-stale" title="Dự báo cập nhật chậm">⚠</span>':''}</span>
+          <span class="gauge-fc-num">${v(d.ai,2)}</span>
+        </div>
+      </div>
+    </div>`;
+  }
+
  function gaugeCard(g){
    const v=g.reading.level,w=warning(g),gap=v==null?null:g.peak_2025_m-v,d=g.reading.delta3h;
    const fc=g.reading.forecast4h,fcAt=g.reading.forecast4hAt,fcDelta=fc!=null&&v!=null?+(fc-v).toFixed(2):null;
    const fcDir=fcDelta==null?'flat':fcDelta>0?'up':fcDelta<0?'down':'flat';
    let jump='Mực nước chưa cập nhật';
    if(v!=null){if(v<g.alarm_level_1)jump='Còn '+nfmt(g.alarm_level_1-v)+' m đến BĐ I';else if(v<g.alarm_level_2)jump='Trên BĐ I '+nfmt(v-g.alarm_level_1)+' m';else if(v<g.alarm_level_3)jump='Trên BĐ II '+nfmt(v-g.alarm_level_2)+' m';else jump='Trên BĐ III '+nfmt(v-g.alarm_level_3)+' m';}
-   const forecastHtml=fc==null?`<div class="gauge-forecast">Dự báo +4h: chưa có dữ liệu</div>`:`<div class="gauge-forecast">Dự báo +4h: <b>${nfmt(fc)} m</b> <span class="${fcDir}">${fcDelta==null?'':(fcDelta>0?'↗ +':fcDelta<0?'↘ ':'→ ')+nfmt(fcDelta)+' m'}</span>${fcAt?`<small>Mốc dự báo: ${formatObsTime(fcAt)}</small>`:''}</div>`;
+   const forecastHtml=pwaGaugeForecastCompact(g);
    return `<article class="gauge-card" id="card-${g.code}"><header class="gauge-header"><div><div class="gauge-name">${g.displayName}</div><div class="gauge-caption" title="Nguồn gốc PCTT Đà Nẵng, đồng bộ qua Supabase · ${sourceLabel(g)}">${gaugeShortSource(g)}</div></div><span class="gauge-status" style="--scolor:${w.color};--sbg:${w.bg};--sborder:${w.border}">${w.label}</span></header>
     <div class="gauge-current"><div class="gauge-big">${nfmt(v)}<small>m</small></div><div class="gauge-delta">${d==null?'Δ3h: —':d>0?'↗ +'+nfmt(d)+' m / 3 giờ':d<0?'↘ '+nfmt(d)+' m / 3 giờ':'→ Ổn định 3 giờ'}<div style="margin-top:3px;color:${w.color};font-weight:800">${jump}</div>${forecastHtml}</div></div>
     <div class="gauge-visual">${gaugeSVG(g)}</div>
@@ -1612,6 +1698,127 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
      <g>${extras}${paths}</g></svg>`;
  }
  // V9.1: same historical data feed as V9, but independently toggle 4 metrics for ONE selected reservoir.
+
+  // RF H+1...H+4 from persisted Supabase forecast. Each row belongs to ONE issue_time.
+  const PWA_RF_RELEASE='RF_DOWNSTREAM_V2_SEQ6_20261020_R1';
+  const PWA_HOUR_MS=3600000;
+  let pwaRfRows=[],pwaRfError=null,pwaRfUpdatedAt=null;
+  let pwaAlignedAI=new Map(),pwaAlignedError=null;
+  let pwaShowRF=true,pwaShowAI=true,pwaShowPeak=true;
+  const pwaDownHours=24;
+
+function v95LatestCompleteIssue(stationCode){
+     const groups=new Map();
+     let latestSeen=-Infinity;
+     for(const r of pwaRfRows){
+       if(r.station_code!==stationCode || r.model_version!==PWA_RF_RELEASE)continue;
+       const issue=msVn(r.issue_time),at=msVn(r.forecast_time);
+       const horizon=Number(r.horizon_hours),h=numVal(r.forecast_level_m),h0=numVal(r.h_now_m);
+       if(issue==null || at==null || !Number.isInteger(horizon) || horizon<1 || horizon>4 || h==null || h0==null)continue;
+       if(issue>Date.now()+15*60000)continue;
+       if(Math.abs(at-issue-horizon*PWA_HOUR_MS)>3*60000)continue;
+       latestSeen=Math.max(latestSeen,issue);
+       const key=String(issue);
+       if(!groups.has(key))groups.set(key,{issue,rows:new Map(),hNow:h0});
+       const group=groups.get(key);
+       if(Math.abs(group.hNow-h0)>.06)continue;
+       group.rows.set(horizon,{ms:at,value:h,horizon});
+     }
+     const candidates=[...groups.values()]
+       .filter(g=>g.rows.size===4 && [1,2,3,4].every(h=>g.rows.has(h)))
+       .sort((a,b)=>b.issue-a.issue);
+     if(!candidates.length)return null;
+     const g=candidates[0];
+     return {issue:g.issue,hNow:g.hNow,values:[1,2,3,4].map(h=>g.rows.get(h)),
+       newerIssueIncomplete:latestSeen>g.issue};
+   }
+
+  
+function v96BuildHistoricLegacyPayload(issueMs){
+    if(!Number.isFinite(issueMs))return {error:'Không có thời điểm phát hành RF'};
+    const hrs=hydroHourRows(),down=downHourRows();
+    const select=(list,t)=>list.find(r=>r.ms===t)||null;
+    const a=select(hrs,issueMs),b=select(hrs,issueMs-PWA_HOUR_MS),c=select(hrs,issueMs-3*PWA_HOUR_MS);
+    const ga=select(down,issueMs),gb=select(down,issueMs-PWA_HOUR_MS),gc=select(down,issueMs-3*PWA_HOUR_MS);
+    if(!a||!b||!c||!ga||!gb||!gc)return {error:'Thiếu mốc quan trắc đúng giờ RF, T−1h hoặc T−3h'};
+    const getTotal=id=>{
+      const p=a.plant?.[id],t=numVal(p?.turbineFlow),s=numVal(p?.spillwayFlow);
+      return t==null||s==null?null:+(t+s).toFixed(2);
+    };
+    const av=getTotal(1),dm=getTotal(2),sb=getTotal(3),st=getTotal(4);
+    const hk=numVal(ga.hk),an=numVal(ga.an);
+    const q0=numVal(a.basin?.qVeVuGia),q1=numVal(b.basin?.qVeVuGia),q3=numVal(c.basin?.qVeVuGia);
+    const qb=numVal(a.basin?.qVeThuBon);
+    const diff=(v,w,mul=1)=>v==null||w==null?null:+((v-w)*mul).toFixed(2);
+    const payload={
+      Hoi_Khach_cm:hk==null?null:+(hk*100).toFixed(2),
+      Ai_Nghia_cm:an==null?null:+(an*100).toFixed(2),
+      A_Vuong_Qra:av,DakMi4_Qra:dm,SongBung4_Qra:sb,SongTranh2_Qra:st,
+      VuGia_3ho_Qra:[av,dm,sb].every(v=>v!=null)?+(av+dm+sb).toFixed(2):null,
+      All4_Qra:[av,dm,sb,st].every(v=>v!=null)?+(av+dm+sb+st).toFixed(2):null,
+      PCTT_Qve_VuGia:q0,PCTT_Qve_ThuBon:qb,
+      HK_Delta_1h:diff(hk,numVal(gb.hk),100),HK_Delta_3h:diff(hk,numVal(gc.hk),100),
+      AN_Delta_1h:diff(an,numVal(gb.an),100),AN_Delta_3h:diff(an,numVal(gc.an),100),
+      Q_VuGia_Delta_1h:diff(q0,q1),Q_VuGia_Delta_3h:diff(q0,q3),
+      time:new Date(issueMs).toISOString()
+    };
+    if(Object.values(payload).some(v=>v==null||v===''||(!Number.isFinite(Number(v))&&v!==payload.time))){
+      return {error:'Nguồn API cũ thiếu Q xả, Q về lưu vực hoặc H tại T/T−1h/T−3h'};
+    }
+    return {payload,anchors:{HOI_KHACH:hk,AI_NGHIA:an}};
+  }
+
+  
+
+  async function pwaLoadRF(){
+    try{
+      await getSupabaseSession();
+      const u=new URL(LIVE_CONFIG.supabaseUrl+'/rest/v1/rf_downstream_shadow_forecasts');
+      u.searchParams.set('select','station_code,model_version,issue_time,forecast_time,horizon_hours,h_now_m,forecast_level_m,status');
+      u.searchParams.set('model_version','eq.'+PWA_RF_RELEASE);
+      u.searchParams.set('order','issue_time.desc,horizon_hours.asc');
+      u.searchParams.set('limit','500');
+      const headers={apikey:LIVE_CONFIG.publishableKey,Accept:'application/json'};
+      if(token)headers.Authorization='Bearer '+token;
+      const rows=await requestJson(u.toString(),{headers});
+      if(!Array.isArray(rows))throw Error('Không đọc được dữ liệu RF V2 từ Supabase');
+      pwaRfRows=rows;pwaRfUpdatedAt=Date.now();
+      pwaRfError=rows.length?null:'Chưa có dự báo RF V2 hoặc chưa cấp quyền SELECT';
+    }catch(e){
+      pwaRfError=e?.message||'Không tải được RF V2';
+      console.warn('[PWA RF V2]',pwaRfError);
+    }
+  }
+  // Mô hình AI cũ sử dụng API /api/downstream-forecast?mode=forecast
+  // đọc hệ số downstream_active_model_coefficients từ Supabase.
+  // Nếu lịch sử đầy đủ tại issue RF: tính lại H+4 cùng giờ để so sánh trên trục.
+  async function pwaLoadAlignedAI(){
+    const result=new Map(),tried=new Set(),problems=[];
+    for(const station of ['HOI_KHACH','AI_NGHIA']){
+      const issue=v95LatestCompleteIssue(station)?.issue;
+      if(!Number.isFinite(issue)||tried.has(issue))continue;
+      tried.add(issue);
+      const built=v96BuildHistoricLegacyPayload(issue);
+      if(!built.payload){problems.push('Không đủ đầu vào AI tại '+v9TimeLabel(issue,true));continue;}
+      try{
+        const url=new URL(backendUrl('/api/downstream-forecast'));
+        url.searchParams.set('mode','forecast');
+        for(const [k,v] of Object.entries(built.payload))url.searchParams.set(k,String(v));
+        const response=await requestJson(url.toString());
+        if(response?.ok!==true||!Array.isArray(response.stations))throw Error('API trả sai định dạng');
+        for(const st of ['HOI_KHACH','AI_NGHIA']){
+          const fc=(response.stations.find(s=>s.station_code===st)?.forecasts||[])
+                     .find(f=>Number(f.horizon_hours)===4);
+          const cm=numVal(fc?.forecast_water_level_cm),target=msVn(fc?.target_time);
+          if(cm==null||target==null||Math.abs(target-issue-4*PWA_HOUR_MS)>5*60000)continue;
+          result.set(st,{issue,target,value:cm/100,anchor:numVal(built.anchors[st])});
+        }
+      }catch(e){problems.push(e?.message||'Không lấy được AI +4h');}
+    }
+    pwaAlignedAI=result;
+    pwaAlignedError=problems.length?problems.join(' · '):null;
+  }
+
  let v91Reservoir=1;
  let v91Station='HOIKHACH';
  let v91AlarmVisible=true;
@@ -1629,7 +1836,10 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    for(const b of document.querySelectorAll('[data-chart-station]')){
      const on=b.dataset.chartStation===v91Station;b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',String(on));
    }
-   const alarm=byId('v91ToggleAlarm');if(alarm){alarm.classList.toggle('is-active',v91AlarmVisible);alarm.setAttribute('aria-pressed',String(v91AlarmVisible));alarm.textContent=(v91AlarmVisible?'✓ ':'○ ')+'Đường BĐ I–III';}
+   const alarm=byId('v91ToggleAlarm');if(alarm){alarm.classList.toggle('is-active',v91AlarmVisible);alarm.setAttribute('aria-pressed',String(v91AlarmVisible));alarm.textContent=(v91AlarmVisible?'✓ ':'○ ')+'BĐ I–III';}
+   for(const [id,on,label] of [['pwaToggleRF',pwaShowRF,'RF V2'],['pwaToggleAI',pwaShowAI,'Mô hình AI'],['pwaTogglePeak',pwaShowPeak,'Đỉnh lũ 2025']]){
+     const b=byId(id);if(b){b.classList.toggle('is-active',on);b.setAttribute('aria-pressed',String(on));b.textContent=(on?'✓ ':'○ ')+label;}
+   }
  }
  function v91DrawFourLines(rows){
    const el=byId('hydroChart');if(!el)return;
@@ -1692,6 +1902,149 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
      <g>${paths}</g>
    </svg>`;
  }
+
+  function pwaRenderDownstreamComparison(g){
+    const el=byId('downChart');
+    if(!el)return;
+    const station=g.code==='HOIKHACH'?'HOI_KHACH':'AI_NGHIA';
+    const rf=v95LatestCompleteIssue(station);
+    const aligned=pwaAlignedAI.get(station)||null;
+    const issue=rf?.issue??msVn(g.updatedAt)??Date.now();
+    const start=issue-pwaDownHours*PWA_HOUR_MS;
+    const end=issue+4*PWA_HOUR_MS;
+    const col=g.code==='HOIKHACH'?'hoi_khach_m':'ai_nghia_m';
+    const samples=new Map();
+    for(const r of downstreamHistory){
+      const tm=msVn(r.obs_hour||r.obs_time),v=numVal(r[col]);
+      if(tm==null||v==null||tm<start||tm>issue)continue;
+      const hour=Math.floor(tm/PWA_HOUR_MS)*PWA_HOUR_MS;
+      if(!samples.has(hour))samples.set(hour,{ms:hour,value:v});
+    }
+    let obs=[...samples.values()].sort((a,b)=>a.ms-b.ms);
+    // If there is no complete RF release yet, still show recent observations.
+    if(!obs.length && numVal(g.reading?.level)!=null && msVn(g.updatedAt)!=null && msVn(g.updatedAt)>=start){
+      obs=[{ms:msVn(g.updatedAt),value:numVal(g.reading.level)}];
+    }
+    const ymax=g.code==='HOIKHACH'?20:11;
+    const width=Math.max(300,Math.round(el.clientWidth||345));
+    const height=268,left=39,right=7,top=29,bottom=36;
+    const plotW=width-left-right,plotH=height-top-bottom,base=top+plotH;
+    const X=tm=>left+((tm-start)/(end-start))*plotW;
+    const Y=h=>top+((ymax-h)/ymax)*plotH;
+    const escape=escapeHtml;
+    const tlabel=ms=>vnParts(ms).hour;
+    const tickT=ms=>{const part=vnParts(ms);return `${part.hour.slice(0,2)}h`;};
+    const pathOf=pts=>pts.map((p,i)=>`${i?'L':'M'}${X(p.ms).toFixed(1)} ${Y(p.value).toFixed(1)}`).join(' ');
+    let grid='',labels='';
+    for(let i=0;i<=5;i++){
+      const h=ymax-i*ymax/5, yy=top+i*plotH/5;
+      grid+=`<path d="M${left} ${yy.toFixed(1)}H${width-right}" stroke="#244a61" stroke-width=".7" opacity=".8"/>`;
+      labels+=`<text x="${left-5}" y="${(yy+3.5).toFixed(1)}" font-size="10" fill="#a9cadc" text-anchor="end">${nfmt(h,h%1?1:0)}</text>`;
+    }
+    // Fixed ticks: start -24h, -18h, -12h, -6h, issue, +4h.
+    const tickOffsets=[-24,-18,-12,-6,0,4];
+    for(const h of tickOffsets){
+      const tm=issue+h*PWA_HOUR_MS,xx=X(tm);
+      grid+=`<path d="M${xx.toFixed(1)} ${top}V${base}" stroke="#315570" stroke-width=".65" opacity=".55" stroke-dasharray="2 6"/>`;
+      labels+=`<text x="${xx.toFixed(1)}" y="${base+15}" text-anchor="${h===4?'end':h===-24?'start':'middle'}" fill="#a8c9dd" font-size="9.5">${escape(tickT(tm))}</text>`;
+    }
+    const tickDay=vnParts(issue).day;
+    labels+=`<text x="${X(issue).toFixed(1)}" y="${base+27}" text-anchor="middle" fill="#b5d4e3" font-size="9">${escape(tickDay)}</text>`;
+    let marks='';
+    const refs=[
+      {key:'BĐ I',n:numVal(g.alarm_level_1),color:'#ffd085',enabled:v91AlarmVisible},
+      {key:'BĐ II',n:numVal(g.alarm_level_2),color:'#ffa96a',enabled:v91AlarmVisible},
+      {key:'BĐ III',n:numVal(g.alarm_level_3),color:'#ff7487',enabled:v91AlarmVisible},
+      {key:'Đỉnh 2025',n:numVal(g.peak_2025_m),color:'#60ddf5',enabled:pwaShowPeak}
+    ];
+    for(const ref of refs){
+      if(!ref.enabled||ref.n==null||ref.n<0||ref.n>ymax)continue;
+      const yy=Y(ref.n);
+      marks+=`<path d="M${left} ${yy.toFixed(1)}H${width-right}" stroke="${ref.color}" stroke-width="1.1" stroke-dasharray="5 5" opacity=".9"/>`;
+      // Nhãn + cao trình được trình bày tại hàng chú giải ngay dưới biểu đồ,
+      // không để chồng chữ lên vùng dự báo hẹp trên điện thoại.
+    }
+    let actual='',rfShape='',aiShape='';
+    const parts=[],current=[];
+    for(const pt of obs){
+      if(current.length && pt.ms-current[current.length-1].ms>1.5*PWA_HOUR_MS){
+        parts.push(current.splice(0));
+      }
+      current.push(pt);
+    }
+    if(current.length)parts.push(current);
+    for(const pts of parts){
+      if(pts.length>=2){
+        const line=pathOf(pts),a=pts[0],b=pts[pts.length-1];
+        actual+=`<path d="${line} L${X(b.ms).toFixed(1)} ${base} L${X(a.ms).toFixed(1)} ${base} Z" fill="url(#pwaWater)" opacity=".68"/>`;
+        actual+=`<path d="${line}" stroke="#66d7ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`;
+      }else{
+        actual+=`<circle cx="${X(pts[0].ms).toFixed(1)}" cy="${Y(pts[0].value).toFixed(1)}" r="2.2" fill="#67dcff"/>`;
+      }
+    }
+    const forecastPts=rf?[{ms:issue,value:rf.hNow},...rf.values]:[];
+    const rfValid=forecastPts.length===5 && forecastPts.every(p=>Number.isFinite(p.ms)&&numVal(p.value)!=null);
+    if(rfValid && pwaShowRF){
+      const p=pathOf(forecastPts);
+      const last=forecastPts[4];
+      rfShape+=`<path d="${p} L${X(last.ms).toFixed(1)} ${base} L${X(issue).toFixed(1)} ${base}Z" fill="url(#pwaRfFill)" opacity=".47"/>`;
+      rfShape+=`<path d="${p}" stroke="#d4a6ff" stroke-width="2.6" stroke-dasharray="6 4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+      for(let i=1;i<forecastPts.length;i++){
+        const pt=forecastPts[i];
+        rfShape+=`<circle cx="${X(pt.ms).toFixed(1)}" cy="${Y(pt.value).toFixed(1)}" r="3.1" fill="#d7adff" stroke="#f3e5ff" stroke-width="1"><title>RF V2 H+${i}: ${nfmt(pt.value,3)} m · ${escape(v9TimeLabel(pt.ms,true))}</title></circle>`;
+      }
+    }
+    const aiValid=aligned && Math.abs(aligned.issue-issue)<60000 && Math.abs(aligned.target-end)<60000 && numVal(aligned.value)!=null;
+    let displayedAI=aiValid?aligned:null;
+    // Reuse the original +4h API response if it is exactly the same issue and target.
+    if(!displayedAI){
+      const issueAI=msVn(g.reading?.forecast4hIssue),targetAI=msVn(g.reading?.forecast4hAt);
+      const valueAI=numVal(g.reading?.forecast4h);
+      if(issueAI!=null&&targetAI!=null&&valueAI!=null && Math.abs(issueAI-issue)<60000 && Math.abs(targetAI-end)<60000){
+        displayedAI={value:valueAI,issue,target:targetAI,anchor:numVal(g.reading?.forecast4hAnchor)};
+      }
+    }
+    if(displayedAI&&pwaShowAI){
+      const ax=X(issue),ay=Y(numVal(displayedAI.anchor)??(rf?.hNow??obs[obs.length-1]?.value??0));
+      const ex=X(end),ey=Y(displayedAI.value);
+      if(numVal(displayedAI.anchor)!=null){
+        aiShape+=`<path d="M${ax.toFixed(1)} ${ay.toFixed(1)} L${ex.toFixed(1)} ${ey.toFixed(1)}" stroke="#ffcb79" stroke-width="2" stroke-dasharray="3 7" fill="none" stroke-linecap="round"/>`;
+      }
+      aiShape+=`<path d="M${ex.toFixed(1)} ${(ey-5).toFixed(1)}L${(ex+5).toFixed(1)} ${ey.toFixed(1)}L${ex.toFixed(1)} ${(ey+5).toFixed(1)}L${(ex-5).toFixed(1)} ${ey.toFixed(1)}Z" fill="#ffca76" stroke="#fff2d5" stroke-width="1.2"><title>Mô hình AI +4h: ${nfmt(displayedAI.value,3)} m · ${escape(v9TimeLabel(end,true))}</title></path>`;
+    }
+    let issueLine='';
+    if(rfValid||displayedAI){
+      const xx=X(issue);
+      issueLine=`<path d="M${xx.toFixed(1)} ${top}V${base}" stroke="#d1dce6" stroke-width="1" stroke-dasharray="5 5"/><text x="${(xx-5).toFixed(1)}" y="${base-7}" fill="#e2f3ff" text-anchor="end" font-weight="850" font-size="8.5" paint-order="stroke" stroke="#09263c" stroke-width="2">PHÁT HÀNH</text>`;
+    }
+    const name=escape(g.displayName);
+    el.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" role="img" aria-label="${name}: mực nước thực đo, RF V2 và mô hình AI dự báo +4 giờ">
+      <defs>
+        <linearGradient id="pwaWater" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#75e6fc" stop-opacity=".75"/><stop offset="1" stop-color="#146c9d" stop-opacity=".29"/></linearGradient>
+        <linearGradient id="pwaRfFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6b0ff" stop-opacity=".35"/><stop offset="1" stop-color="#704cb0" stop-opacity=".08"/></linearGradient>
+        <clipPath id="pwaDownClip"><rect x="${left}" y="${top}" width="${plotW}" height="${plotH}"/></clipPath>
+      </defs>
+      <rect width="${width}" height="${height}" fill="#09263c"/>
+      <rect x="${X(issue).toFixed(1)}" y="${top}" width="${Math.max(0,plotW-(X(issue)-left)).toFixed(1)}" height="${plotH}" fill="#b281df" opacity=".06"/>
+      ${grid}${labels}
+      <text x="${left}" y="16" font-size="12" font-weight="850" fill="#eafaff">${name}</text>
+      <text x="${width-right}" y="16" text-anchor="end" fill="#a6cfe2" font-size="10">0–${ymax} m</text>
+      <g clip-path="url(#pwaDownClip)">${actual}${rfShape}${aiShape}${marks}${issueLine}</g>
+    </svg>`;
+    const rf4=rfValid?rf.values[3].value:null;
+    const ai4=displayedAI?.value??null;
+    const delta=rf4!=null&&ai4!=null?rf4-ai4:null;
+    const show=(v,d=3)=>v==null?'—':nfmt(v,d)+' m';
+    const target=v9TimeLabel(end,true);
+    const note=byId('downChartNote');
+    if(note)note.innerHTML=`<span><b>+4 giờ · ${escape(target)}</b></span>
+      <span>RF V2: <b class="pwa-rf-v">${escape(show(rf4))}</b></span>
+      <span>Mô hình AI: <b class="pwa-ai-v">${escape(show(ai4))}</b></span>
+      <span>Chênh lệch: <b class="pwa-diff-v">${escape(delta==null?'—':(delta>=0?'+':'')+nfmt(delta,3)+' m')}</b></span>`;
+    const thresholds=byId('downChartThresholds');
+    if(thresholds)thresholds.innerHTML=refs.map(r=>`<span style="color:${r.color}">${escape(r.key)} <b>${nfmt(r.n,2)} m</b></span>`).join('');
+  }
+
  function renderCharts(){
    const hours=byId('chartRange');if(hours)hours.value=String(rangeHours);
    v91SyncButtons();
@@ -1705,12 +2058,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    }).join('');
    byId('hydroChartNote').textContent=`Hồ thủy điện ${V9_RESERVOIRS[v91Reservoir]} · ${rangeHours} giờ · ${v91VisibleMetrics.size}/4 đường đang bật · MNH theo trục trái (m), ba lưu lượng theo trục phải (m³/s) · đường gián đoạn nếu thiếu trên 2 giờ · nguồn PCTT Đà Nẵng`;
    const g=gauges.find(x=>x.code===v91Station)||gauges[0];
-   const col=g.code==='HOIKHACH'?'hk':'an';const pts=downHourRows().slice().reverse().map(x=>({ms:x.ms,value:numVal(x[col])})).filter(x=>x.value!=null);
-   const forecast=g.reading.forecast4h==null?null:{ms:msVn(g.reading.forecast4hAt),value:g.reading.forecast4h};
-   const alarm=[{label:'BĐ I',value:g.alarm_level_1,color:'#ffd287'},{label:'BĐ II',value:g.alarm_level_2,color:'#ffad73'},{label:'BĐ III',value:g.alarm_level_3,color:'#ff849c'}];
-   drawV9Series('downChart',pts,{unit:'m',color:'#65daff',title:`${g.displayName} · mực nước quan trắc`,forecast,thresholds:alarm,showThresholds:v91AlarmVisible});
-   byId('downChartThresholds').innerHTML=alarm.map(t=>`<span>${t.label}: <b style="color:${t.color}">${nfmt(t.value,2)} m</b></span>`).join('');
-   byId('downChartNote').textContent=`${g.displayName}: ${pts.length} mốc · hiện tại ${nfmt(g.reading.level)} m · dự báo +4h ${nfmt(g.reading.forecast4h)} m${g.reading.forecast4hAt?' · đích '+formatObsTime(g.reading.forecast4hAt):''} · không suy diễn số liệu khi thiếu.`;
+   pwaRenderDownstreamComparison(g);
  }
  // V9 – Official Google My Maps viewer embed; the underlying map is controlled by its owner.
  const V9_MYMAPS_ID='1OuvFULZypRbV6ABno2txIHFKzQ6nIhc';
@@ -1973,11 +2321,11 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
  const FORECAST_INPUT_MAX_AGE_MS=6*3600*1000;
  function loadForecastCache(){
    try{const x=JSON.parse(localStorage.getItem(FORECAST_CACHE_KEY)||'{}');
-     for(const g of gauges){const c=x?.[g.code];if(!c)continue;const v=numVal(c.value);if(v==null)continue;g.reading.forecast4h=v;g.reading.forecast4hAt=c.target||null;g.forecastError='Dự báo gần nhất đã lưu';}
+     for(const g of gauges){const c=x?.[g.code];if(!c)continue;const v=numVal(c.value);if(v==null)continue;g.reading.forecast4h=v;g.reading.forecast4hAt=c.target||null;g.reading.forecast4hIssue=c.issue||null;g.reading.forecast4hAnchor=numVal(c.anchor);g.forecastError='Dự báo gần nhất đã lưu';}
    }catch(_){ }
  }
  function saveForecastCache(){
-   try{const out={};for(const g of gauges){if(g.reading.forecast4h!=null)out[g.code]={value:g.reading.forecast4h,target:g.reading.forecast4hAt||null,savedAt:new Date().toISOString()};}localStorage.setItem(FORECAST_CACHE_KEY,JSON.stringify(out));}catch(_){ }
+   try{const out={};for(const g of gauges){if(g.reading.forecast4h!=null)out[g.code]={value:g.reading.forecast4h,target:g.reading.forecast4hAt||null,issue:g.reading.forecast4hIssue||null,anchor:g.reading.forecast4hAnchor??null,savedAt:new Date().toISOString()};}localStorage.setItem(FORECAST_CACHE_KEY,JSON.stringify(out));}catch(_){ }
  }
  function msVn(value){
    if(value===null||value===undefined||value==='')return null;
@@ -2176,7 +2524,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    const deltaKeys=['HK_Delta_1h','HK_Delta_3h','AN_Delta_1h','AN_Delta_3h','Q_VuGia_Delta_1h','Q_VuGia_Delta_3h'];
    return [...required,...deltaKeys].every(k=>payload[k]!==null&&payload[k]!==undefined&&Number.isFinite(Number(payload[k])))?payload:null;
  }
- function applyForecastResponse(result){
+ function applyForecastResponse(result,payload){
    const stationMap={HOIKHACH:'HOI_KHACH',AINGHIA:'AI_NGHIA'};
    for(const g of gauges){
      const station=(result?.stations||[]).find(x=>x.station_code===stationMap[g.code]);
@@ -2184,6 +2532,9 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
      const cm=numVal(fc?.forecast_water_level_cm);
      g.reading.forecast4h=cm==null?null:+(cm/100).toFixed(2);
      g.reading.forecast4hAt=fc?.target_time||null;
+     g.reading.forecast4hIssue=cm==null?null:(payload?.time||null);
+     const anchor=numVal(g.code==='HOIKHACH'?payload?.Hoi_Khach_cm:payload?.Ai_Nghia_cm);
+     g.reading.forecast4hAnchor=cm==null||anchor==null?null:anchor/100;
      g.forecastError=cm==null?'Không có giá trị dự báo +4h':null;
    }
  }
@@ -2200,7 +2551,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    for(const [k,v] of Object.entries(payload))url.searchParams.set(k,String(v));
    const result=await requestJson(url.toString());
    if(!result||result.ok!==true||!Array.isArray(result.stations))throw Error('API dự báo hạ du trả dữ liệu không hợp lệ');
-   applyForecastResponse(result);saveForecastCache();
+   applyForecastResponse(result,payload);saveForecastCache();
  }
  async function loadGauges(){
    let errors=[];let rows=null;
@@ -2222,7 +2573,11 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    isSyncing=true;byId('refreshLiveBtn').disabled=true;setStatus('Đang lấy 4 hồ từ PCTT, 2 trạm hạ du và dự báo +4h…');
    try{
      await Promise.all([loadReservoirs(),loadGauges()]);
-     try{await loadGaugeForecasts();}catch(e){downstreamForecastError=e.message;for(const g of gauges){if(g.reading.forecast4h==null)g.forecastError=e.message;}}
+     await Promise.all([
+       loadGaugeForecasts().catch(e=>{downstreamForecastError=e.message;for(const g of gauges){if(g.reading.forecast4h==null)g.forecastError=e.message;}}),
+       pwaLoadRF()
+     ]);
+     try{await pwaLoadAlignedAI();}catch(e){pwaAlignedError=e.message;console.warn('[PWA AI aligned]',e);}
      lastSyncTime=nowStamp();
      const all=[...reservoirs,...gauges],live=all.filter(x=>x.source==='live').length,stale=all.filter(x=>x.source==='stale').length,missing=6-live-stale;
      setStatus(`PCTT Đà Nẵng (hạ du qua Supabase): ${live}/6 nguồn mới · ${stale} số đo cũ · ${missing} nguồn thiếu / chưa kiểm chứng`,live<6?'warn':'');
@@ -2238,7 +2593,7 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
      r.reading={level:numVal(x.level),inflow:numVal(x.inflow),turbine:numVal(x.turbine),spill:numVal(x.spill),gate:numVal(x.gate),delta24:numVal(x.delta24)};
      r.updatedAt=x.updatedAt||payload.updatedAt||null;r.source='live';r.lastError=null;}
    for(const x of GG){const g=gauges.find(y=>y.code===x.code);if(!g)continue;
-     g.reading={level:numVal(x.level),delta3h:numVal(x.delta3h),forecast4h:numVal(x.forecast4h),forecast4hAt:x.forecast4hAt||null};
+     g.reading={level:numVal(x.level),delta3h:numVal(x.delta3h),forecast4h:numVal(x.forecast4h),forecast4hAt:x.forecast4hAt||null,forecast4hIssue:x.forecast4hIssue||null,forecast4hAnchor:numVal(x.forecast4hAnchor)};
      g.updatedAt=x.updatedAt||payload.updatedAt||null;g.source='live';g.lastError=null;}
    render();refreshDetailIfOpen();return true;
  };
@@ -2280,6 +2635,9 @@ body{display:flex;justify-content:center;align-items:stretch;color:#eef8ff;overs
    b.addEventListener('click',()=>{v91Station=b.dataset.chartStation;renderCharts();});
  }
  byId('v91ToggleAlarm').addEventListener('click',()=>{v91AlarmVisible=!v91AlarmVisible;renderCharts();});
+ byId('pwaToggleRF').addEventListener('click',()=>{pwaShowRF=!pwaShowRF;renderCharts();});
+ byId('pwaToggleAI').addEventListener('click',()=>{pwaShowAI=!pwaShowAI;renderCharts();});
+ byId('pwaTogglePeak').addEventListener('click',()=>{pwaShowPeak=!pwaShowPeak;renderCharts();});
  byId('chartRefresh').addEventListener('click',refreshLive);
  for(const b of document.querySelectorAll('.site-tab')){
    b.addEventListener('keydown',e=>{
